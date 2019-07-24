@@ -1,0 +1,29 @@
+<html>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+
+<style>
+body {
+  font: 14px sans-serif;
+}
+.bar rect {
+  fill: silver;
+}
+.bar text {
+  fill: black;
+}
+.axis path, .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+</style>
+
+<script>
+d3.csv('couples_data.csv', function(data) {
+  for(var i = 0; i<data.length; i++) {
+    console.log(data[i].Q21A_Year);
+  }
+})
+</script>
+
+</html>
