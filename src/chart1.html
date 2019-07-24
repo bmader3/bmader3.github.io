@@ -18,13 +18,13 @@ body {
 }
 </style>
 
-<body>
+<body onload='main()'>
   <script>
-    d3.csv('/couples_data.csv', function(data) {
-      for(var i = 0; i<data.length; i++) {
-        console.log(data[i].Q21A_Year);
+    async function main() {
+      const data = await d3.csv('/couples_data.csv');
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i].Q21A_Year)
       }
-    })
   </script>
 </body>
 
