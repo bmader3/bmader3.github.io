@@ -21,7 +21,7 @@ body {
 <body onload='main()'>
   <script>
     async function main() {
-      const data = await d3.csv('/couples_data.csv');
+      const data = await d3.csv('/src/couples_data.csv');
       for (var i = 0; i < data.length; i++) {
         console.log(data[i].Q21A_Year);
       }
