@@ -40,7 +40,7 @@ body {
         .attr('width', svg_width + 2*margin)
         .attr('height', svg_height + 2*margin)
         .append('g')
-          .attr(transform, 'translate(+margin+, +margin+)');
+          .attr('transform', 'translate(+margin+, +margin+)');
       
       var bar = svg.selectAll('bar').data(data['1960s'])
         .enter()
