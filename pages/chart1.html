@@ -10,6 +10,7 @@ body {
 }
 .bar text {
   fill: black;
+  font: 14px sans-serif;
 }
 .axis path, .axis line {
   fill: none;
@@ -21,9 +22,9 @@ body {
 <body onload='main()'>
   <script>
     async function main() {
-      const data = await d3.csv('/data/couples_data.csv');
+      const data = await d3.csv('/data/overview_data.csv');
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i].Q21A_Year);
+        console.log(data[i]);
       }
     }
   </script>
