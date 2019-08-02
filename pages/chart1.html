@@ -80,10 +80,11 @@ body {
 
       var bar = svg.selectAll('.bar').data(data1960)
         .enter()
-        .append('rect')
+        .append('g')
         .attr('class', 'bar')
-        .attr('x', 0)
-        .attr('y', function(d, i) { return yScale(i); })
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
+      
+      bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
         .attr('height', yScale.bandwidth());
       
@@ -91,8 +92,7 @@ body {
         .attr('text-anchor', 'left')
         .attr('x', 10)
         .attr('dy', '.3em')
-        .attr('text', 'TEXT')
-        .attr('fill', 'black');
+        .attr('text', function(d,i) { return ways[i]; });
     }
   </script>
 </body>
