@@ -111,8 +111,8 @@ body {
 //         .style('font', '14px sans-serif');
       
       svg.append('g')
-        .call(xaxis)
         .call(yaxis);
+      d3.select('svg').append('g').call(xaxis);
 
 //       d3.select('svg').append('text')
 //         .attr('x', (svg_width + margin.left + margin.right) / 2 )
