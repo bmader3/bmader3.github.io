@@ -42,7 +42,7 @@ body {
         .append('g')
           .attr('transform', 'translate(' + margin + ', ' + margin + ')');
       
-      console.log(data['1960s']);
+      console.log(data.map(function(value) { return value[1]; }));
       
       var bar = svg.selectAll('.bar').data(data['1960s'])
         .enter()
