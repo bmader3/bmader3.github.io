@@ -81,7 +81,7 @@ body {
       var xaxis = d3.axisTop().scale(xScale)
         .ticks(12)
         .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22])
-        .tickFormat(d => 100*d + '%');
+        .tickFormat(d => parseInt(100*d) + '%');
       
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(ways.length)
@@ -120,6 +120,17 @@ body {
         .text('How Couples Met By Decade');
     }
   </script>
+  
+  <button onclick='update_data(1970)'>1970s</button>
+  
+  <script>
+    function update_data(year) {
+      d3.selectAll('bar').data(data1970)
+        .transition().duration(1000)
+        .attr('width', function(d) { return xScale(d); });
+    }
+  </script>
+  
 </body>
 
 </html>
