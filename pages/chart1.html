@@ -77,10 +77,7 @@ body {
         data2010.push(parseFloat(data[i]['2010s']));
       }
       
-      console.log(ways);
-      console.log(data2000);
-
-        var bar = svg.selectAll('.bar').data(data['1960s'])
+        var bar = svg.selectAll('.bar').data(data1960)
           .enter()
           .append('rect')
           .attr('class', 'bar')
