@@ -23,7 +23,7 @@ body {
   <script>
     async function main() {
       const data = await d3.csv('/data/overview_data.csv');
-      console.log(data[0]);
+      console.log(data.map(function(d) {return d[1];}));
 
 //         var svg_width = 400;
 //         var svg_height = 400;
