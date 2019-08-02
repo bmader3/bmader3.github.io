@@ -5,14 +5,14 @@
 body {
   font: 14px sans-serif;
 }
-.bar rect {
+bar rect {
   fill: silver;
 }
-.bar text {
+bar text {
   fill: black;
   font: 14px sans-serif;
 }
-.axis path, .axis line {
+axis path, axis line {
   fill: none;
   stroke: black;
   shape-rendering: crispEdges;
@@ -27,14 +27,6 @@ body {
         var svg_width = 400;
         var svg_height = 400;
         var margin = 50;
-
-        var xScale = d3.scaleLinear()
-          .domain([0,0.22])
-          .range([0, svg_width]);
-
-        var yScale = d3.scaleBand()
-          .domain([0,19])
-          .range([svg_height, 0]);
 
         var svg = d3.select('body').append('svg')
           .attr('width', svg_width + 2*margin)
@@ -77,14 +69,23 @@ body {
         data2010.push(parseFloat(data[i]['2010s']));
       }
       
-        var bar = svg.selectAll('.bar').data(data1960)
-          .enter()
-          .append('rect')
-          .attr('class', 'bar')
-          .attr('x', 0)
-          .attr('y', function(d, i) { return yScale(i); })
-          .attr('width', function(d) { return xScale(d); })
-          .attr('height', yScale.bandwidth());
+      var xScale = d3.scaleLinear()
+        .domain([0,0.22])
+        .range([0, svg_width]);
+
+      var yScale = d3.scaleBand()
+        .domain(d3.range(ways.length))
+        .range([svg_height, 0])
+        .paddingInner(0.05);
+
+      var bar = svg.selectAll('.bar').data(data1960)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', 0)
+        .attr('y', function(d, i) { return yScale(i); })
+        .attr('width', function(d) { return xScale(d); })
+        .attr('height', yScale.bandwidth());
     }
   </script>
 </body>
