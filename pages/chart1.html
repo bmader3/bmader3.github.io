@@ -93,7 +93,7 @@ body {
         .attr('x', 10)
         .attr('y', yScale.bandwidth() / 2)
         .attr('dy', '.35em')
-        .attr('text', function(d,i) { return ways[i]; })
+        .text(function(d,i) { return ways[i]; })
         .style('fill', 'black')
         .style('font', '14px sans-serif');
     }
