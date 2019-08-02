@@ -112,7 +112,8 @@ body {
       
       svg.append('g')
         .call(yaxis);
-      d3.select('svg').append('g').call(xaxis);
+      svg.append('g')
+        .call(xaxis);
 
 //       d3.select('svg').append('text')
 //         .attr('x', (svg_width + margin.left + margin.right) / 2 )
