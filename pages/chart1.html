@@ -111,11 +111,11 @@ body {
 //         .style('fill', 'black')
 //         .style('font', '14px sans-serif');
       
-      svg.append('g')
+      d3.select('svg').append('g')
 //         .call(xaxis)
         .call(yaxis);
 
-      svg.append('text')
+      d3.select('svg').append('text')
         .attr('x', svg_width / 2 + margin)
         .attr('y', margin / 2)
         .attr('text-anchor', 'middle')
