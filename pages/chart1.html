@@ -84,6 +84,7 @@ body {
         .paddingInner(0.05);
 
       var xaxis = d3.axisTop().scale(xScale)
+        .ticks(12)
         .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22]);
       
       var yaxis = d3.axisLeft().scale(yScale)
