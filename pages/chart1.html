@@ -47,38 +47,38 @@ body {
         ways.push(data[i]['Way To Meet']);
       }
       
-      var 1960data = [];
+      var data1960 = [];
       for (var i = 0; i < data.length; i++) {
         1960data.push(parseFloat(data[i]['1960s']));
       }
       
-      var 1970data = [];
+      var data1970 = [];
       for (var i = 0; i < data.length; i++) {
         1970data.push(parseFloat(data[i]['1970s']));
       }
       
-      var 1980data = [];
+      var data1980 = [];
       for (var i = 0; i < data.length; i++) {
         1980data.push(parseFloat(data[i]['1980s']));
       }
       
-      var 1990data = [];
+      var data1990 = [];
       for (var i = 0; i < data.length; i++) {
         1990data.push(parseFloat(data[i]['1990s']));
       }
       
-      var 2000data = [];
+      var data2000 = [];
       for (var i = 0; i < data.length; i++) {
         2000data.push(parseFloat(data[i]['2000s']));
       }
       
-      var 2010data = [];
+      var data2010 = [];
       for (var i = 0; i < data.length; i++) {
         2010data.push(parseFloat(data[i]['2010s']));
       }
       
       console.log(ways);
-      console.log(2000data);
+      console.log(data2000);
 
         var bar = svg.selectAll('.bar').data(data['1960s'])
           .enter()
