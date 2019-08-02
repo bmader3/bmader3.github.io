@@ -23,36 +23,71 @@ body {
   <script>
     async function main() {
       const data = await d3.csv('/data/overview_data.csv');
-      console.log(data['1960s']);
 
-//         var svg_width = 400;
-//         var svg_height = 400;
-//         var margin = 50;
+        var svg_width = 400;
+        var svg_height = 400;
+        var margin = 50;
 
-//         var xScale = d3.scaleLinear()
-//           .domain([0,0.22])
-//           .range([0, svg_width]);
+        var xScale = d3.scaleLinear()
+          .domain([0,0.22])
+          .range([0, svg_width]);
 
-//         var yScale = d3.scaleBand()
-//           .domain([0,19])
-//           .range([svg_height, 0]);
+        var yScale = d3.scaleBand()
+          .domain([0,19])
+          .range([svg_height, 0]);
 
-//         var svg = d3.select('body').append('svg')
-//           .attr('width', svg_width + 2*margin)
-//           .attr('height', svg_height + 2*margin)
-//           .append('g')
-//             .attr('transform', 'translate(' + margin + ', ' + margin + ')');
+        var svg = d3.select('body').append('svg')
+          .attr('width', svg_width + 2*margin)
+          .attr('height', svg_height + 2*margin)
+          .append('g')
+            .attr('transform', 'translate(' + margin + ', ' + margin + ')');
+      
+      arr ways = [];
+      for (var i = 0; i < data.length; i++) {
+        ways.push(data[i]['Way To Meet']);
+      }
+      
+      arr 1960data = [];
+      for (var i = 0; i < data.length; i++) {
+        1960data.push(parseFloat(data[i]['1960s']));
+      }
+      
+      arr 1970data = [];
+      for (var i = 0; i < data.length; i++) {
+        1970data.push(parseFloat(data[i]['1970s']));
+      }
+      
+      arr 1980data = [];
+      for (var i = 0; i < data.length; i++) {
+        1980data.push(parseFloat(data[i]['1980s']));
+      }
+      
+      arr 1990data = [];
+      for (var i = 0; i < data.length; i++) {
+        1990data.push(parseFloat(data[i]['1990s']));
+      }
+      
+      arr 2000data = [];
+      for (var i = 0; i < data.length; i++) {
+        2000data.push(parseFloat(data[i]['2000s']));
+      }
+      
+      arr 2010data = [];
+      for (var i = 0; i < data.length; i++) {
+        2010data.push(parseFloat(data[i]['2010s']));
+      }
+      
+      console.log(ways);
+      console.log(2000data);
 
-//         console.log(data.map(function(value) { return value[1]; }));
-
-//         var bar = svg.selectAll('.bar').data(data['1960s'])
-//           .enter()
-//           .append('rect')
-//           .attr('class', 'bar')
-//           .attr('x', 0)
-//           .attr('y', function(d, i) { return yScale(i); })
-//           .attr('width', function(d) { return xScale(d); })
-//           .attr('height', yScale.bandwidth());
+        var bar = svg.selectAll('.bar').data(data['1960s'])
+          .enter()
+          .append('rect')
+          .attr('class', 'bar')
+          .attr('x', 0)
+          .attr('y', function(d, i) { return yScale(i); })
+          .attr('width', function(d) { return xScale(d); })
+          .attr('height', yScale.bandwidth());
     }
   </script>
 </body>
