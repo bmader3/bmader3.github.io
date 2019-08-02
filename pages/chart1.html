@@ -118,12 +118,15 @@ body {
         .attr('text-anchor', 'middle')
         .style('font', '20px "Lucida Console"')
         .text('How Couples Met By Decade');
-    }
-    function update_data(year) {
+      
+      function update_data(year) {
       d3.selectAll('bar').data(data1970)
         .transition().duration(1000)
         .attr('width', function(d) { return xScale(d); });
+      }
+      
     }
+    
   </script>
   
   <button onclick='update_data(1970)'>1970s</button>
