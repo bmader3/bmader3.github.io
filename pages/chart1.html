@@ -86,6 +86,12 @@ body {
         .attr('y', function(d, i) { return yScale(i); })
         .attr('width', function(d) { return xScale(d); })
         .attr('height', yScale.bandwidth());
+      
+      bar.append('text')
+        .attr('text-anchor', 'left')
+        .attr('x', 10)
+        .attr('dy', '.3em')
+        .attr('text', function(d,i) { return ways[i]; });
     }
   </script>
 </body>
