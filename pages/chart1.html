@@ -20,9 +20,15 @@ body {
 </style>
 
 <body onload='main()'>
+  
+  var data;
+  var data1970;
+  
+  <button onclick='update_data(1970)'>1970s</button>
+  
   <script>
     async function main() {
-      const data = await d3.csv('/data/overview_data.csv');
+      data = await d3.csv('/data/overview_data.csv');
 
       var svg_width = 800;
       var svg_height = 600;
@@ -119,19 +125,17 @@ body {
         .style('font', '20px "Lucida Console"')
         .text('How Couples Met By Decade');
       
-      function update_data(year) {
-      d3.selectAll('bar').data(data1970)
-        .transition().duration(1000)
-        .attr('width', function(d) { return xScale(d); });
-      }
+//       var btn1970 = document.createElement('button')
+//         .innerHTML = '1970s'
+//         .onclick
       
     }
     
-  </script>
-  
-  <button onclick='main.update_data(1970)'>1970s</button>
-  
-  <script>
+    function update_data(year) {
+      d3.selectAll('bar').data(data1970)
+        .transition().duration(1000)
+        .attr('width', function(d) { return xScale(d); });
+    }
     
   </script>
   
