@@ -83,10 +83,8 @@ body {
         .range([0, svg_height])
         .paddingInner(0.05);
 
-//       var xaxis = d3.axisTop().scale(xScale)
-//         .tickValues([0,2,4,6,8,10,12,14,16,18,20,22]);
-
-
+      var xaxis = d3.axisTop().scale(xScale)
+        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22]);
       
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(ways.length)
@@ -112,7 +110,7 @@ body {
 //         .style('font', '14px sans-serif');
       
       svg.append('g')
-//         .call(xaxis)
+        .call(xaxis)
         .call(yaxis);
 
       d3.select('svg').append('text')
