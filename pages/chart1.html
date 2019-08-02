@@ -72,28 +72,31 @@ body {
       var xScale = d3.scaleLinear()
         .domain([0,0.22])
         .range([0, svg_width]);
-
-      var yScale = d3.scaleBand()
-        .domain(d3.range(ways.length))
-        .range([svg_height, 0])
-        .paddingInner(0.05);
-
-//       var xaxis = d3.axisTop().scale(xScale)
-//         .tickValues([0,2,4,6,8,10,12,14,16,18,20,22]);
-
+      
       var yticks = d3.range(ways.length);
       for (var i = 0; i < ways.length; i++) {
         yticks[i] = yticks[i] + 1;
       }
       
+      var yScale = d3.scaleBand()
+        .domain(yticks)
+        .range([0, svg_height])
+        .paddingInner(0.05);
+
+//       var xaxis = d3.axisTop().scale(xScale)
+//         .tickValues([0,2,4,6,8,10,12,14,16,18,20,22]);
+
+
+      
       var yaxis = d3.axisLeft().scale(yScale)
+        .ticks(ways.length)
         .tickValues(yticks);
 
       var bar = svg.selectAll('g').data(data1960)
         .enter()
         .append('g')
         .attr('class', 'bar')
-        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i+1) + ')'; });
 
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
