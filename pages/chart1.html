@@ -73,29 +73,26 @@ body {
         .domain([0,0.22])
         .range([0, svg_width]);
       
-      var yticks = d3.range(ways.length);
-      for (var i = 0; i < ways.length; i++) {
-        yticks[i] = yticks[i] + 1;
-      }
-      
       var yScale = d3.scaleBand()
-        .domain(yticks)
+        .domain(d3.range(ways.length))
         .range([0, svg_height])
         .paddingInner(0.05);
 
       var xaxis = d3.axisTop().scale(xScale)
         .ticks(12)
-        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22]);
+        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22])
+        .tickFormat(d => 100*d + '%');
       
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(ways.length)
-        .tickValues(yticks);
+        .tickValues(d3.range(ways.length))
+        .tickFormat(d => d+1);
 
       var bar = svg.selectAll('g').data(data1960)
         .enter()
         .append('g')
         .attr('class', 'bar')
-        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i+1) + ')'; });
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
 
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
@@ -115,12 +112,12 @@ body {
       svg.append('g')
         .call(xaxis);
 
-//       d3.select('svg').append('text')
-//         .attr('x', (svg_width + margin.left + margin.right) / 2 )
-//         .attr('y', margin.top / 2)
-//         .attr('text-anchor', 'middle')
-//         .style('font', '20px "Lucida Console"')
-//         .text('How Couples Met By Decade');
+      d3.select('svg').append('text')
+        .attr('x', (svg_width + margin.left + margin.right) / 2 )
+        .attr('y', margin.top / 2)
+        .attr('text-anchor', 'middle')
+        .style('font', '20px "Lucida Console"')
+        .text('How Couples Met By Decade');
     }
   </script>
 </body>
