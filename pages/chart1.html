@@ -24,15 +24,15 @@ body {
     async function main() {
       const data = await d3.csv('/data/overview_data.csv');
 
-      var svg_width = 400;
-      var svg_height = 400;
-      var margin = 50;
+      var svg_width = 800;
+      var svg_height = 600;
+      var margin = {top: 80, left: 40, right: 20, bottom: 20};
 
       var svg = d3.select('body').append('svg')
-        .attr('width', svg_width + 2*margin)
-        .attr('height', svg_height + 2*margin)
+        .attr('width', svg_width + margin.left + margin.right)
+        .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
-          .attr('transform', 'translate(' + margin + ', ' + margin + ')');
+          .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
       var ways = [];
       for (var i = 0; i < data.length; i++) {
@@ -111,13 +111,13 @@ body {
 //         .style('fill', 'black')
 //         .style('font', '14px sans-serif');
       
-      d3.select('svg').append('g')
+      svg.append('g')
 //         .call(xaxis)
         .call(yaxis);
 
       d3.select('svg').append('text')
-        .attr('x', svg_width / 2 + margin)
-        .attr('y', margin / 2)
+        .attr('x', (svg_width + margin.left + margin.right) / 2 )
+        .attr('y', margin.top / 2)
         .attr('text-anchor', 'middle')
         .style('font', '20px "Lucida Console"')
         .text('How Couples Met By Decade');
