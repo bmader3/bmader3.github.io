@@ -24,51 +24,51 @@ body {
     async function main() {
       const data = await d3.csv('/data/overview_data.csv');
 
-        var svg_width = 400;
-        var svg_height = 400;
-        var margin = 50;
+      var svg_width = 400;
+      var svg_height = 400;
+      var margin = 50;
 
-        var svg = d3.select('body').append('svg')
-          .attr('width', svg_width + 2*margin)
-          .attr('height', svg_height + 2*margin)
-          .append('g')
-            .attr('transform', 'translate(' + margin + ', ' + margin + ')');
-      
+      var svg = d3.select('body').append('svg')
+        .attr('width', svg_width + 2*margin)
+        .attr('height', svg_height + 2*margin)
+        .append('g')
+          .attr('transform', 'translate(' + margin + ', ' + margin + ')');
+
       var ways = [];
       for (var i = 0; i < data.length; i++) {
         ways.push(data[i]['Way To Meet']);
       }
-      
+
       var data1960 = [];
       for (var i = 0; i < data.length; i++) {
         data1960.push(parseFloat(data[i]['1960s']));
       }
-      
+
       var data1970 = [];
       for (var i = 0; i < data.length; i++) {
         data1970.push(parseFloat(data[i]['1970s']));
       }
-      
+
       var data1980 = [];
       for (var i = 0; i < data.length; i++) {
         data1980.push(parseFloat(data[i]['1980s']));
       }
-      
+
       var data1990 = [];
       for (var i = 0; i < data.length; i++) {
         data1990.push(parseFloat(data[i]['1990s']));
       }
-      
+
       var data2000 = [];
       for (var i = 0; i < data.length; i++) {
         data2000.push(parseFloat(data[i]['2000s']));
       }
-      
+
       var data2010 = [];
       for (var i = 0; i < data.length; i++) {
         data2010.push(parseFloat(data[i]['2010s']));
       }
-      
+
       var xScale = d3.scaleLinear()
         .domain([0,0.22])
         .range([0, svg_width]);
@@ -78,28 +78,42 @@ body {
         .range([svg_height, 0])
         .paddingInner(0.05);
 
+      var xaxis = d3.axisTop().scale(xScale)
+        .tickValues([0,2,4,6,8,10,12,14,16,18,20,22]);
+
+      var yticks = d3.range(ways.length);
+      for (var i = 0; i < ways.length; i++) {
+        yticks[i] = yticks[i] + 1;
+      }
+      var yaxis = d3.axisLeft().scale(yScale)
+        .tickValues(yticks);
+
       var bar = svg.selectAll('g').data(data1960)
         .enter()
         .append('g')
         .attr('class', 'bar')
         .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
-      
+
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
         .attr('height', yScale.bandwidth());
-      
+
       bar.append('text')
         .attr('text-anchor', 'left')
-        .attr('x', 10)
+        .attr('x', 5)
         .attr('y', yScale.bandwidth() / 2)
         .attr('dy', '.35em')
         .text(function(d,i) { return ways[i]; });
 //         .style('fill', 'black')
 //         .style('font', '14px sans-serif');
       
+      svg.append('g')
+        .call(xaxis)
+        .call(yaxis);
+
       svg.append('text')
         .attr('x', svg_width / 2 + margin)
-        .attr('y' margin / 2)
+        .attr('y', margin / 2)
         .attr('text-anchor', 'middle')
         .style('font', '20px "Lucida Console"')
         .text('How Couples Met By Decade");
