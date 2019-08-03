@@ -51,7 +51,7 @@ body {
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
 
-      var svg = d3.select('body').append('svg')
+      var svg = d3.select('body').insert('svg')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
