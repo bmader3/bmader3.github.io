@@ -124,9 +124,8 @@ body {
     }
     
     function update_data(year) {
-      console.log(data1970);
-      d3.select('body').selectAll('bar').data(data1970)
-        .transition().duration(1000)
+      var svg = d3.select('body').transition();
+      svg.selectAll('bar').data(data1970)
         .attr('width', function(d) { return xScale(d); });
     }
     
