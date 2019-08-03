@@ -17,19 +17,6 @@
     stroke: black;
     shape-rendering: crispEdges;
   }
-/* .button-group button {
-  background-color: DarkGray;
-  border: 3px solid DimGray;
-  color: white;
-  padding: 10px 24px;
-  float: left;
-  font: 18px "Lucida Console";
-  width: 16.666667%;
-}
-.button-group button:hover {
-  background-color: SlateGray;
-} */
-  
   .selector {
     font: 20px "Lucida Console";
     background-color: DarkGray;
@@ -38,11 +25,9 @@
     padding: 10px 24px;
     float: middle;
   }
-  
   .selector menu {
     font: 20px "Lucida Console";
   }
-  
   .selector vis {
     font: 20px "Lucida Console";
   }
@@ -245,7 +230,7 @@
       }
 
       xScale = d3.scaleLinear()
-        .domain([0,0.25])
+        .domain([0,0.38])
         .range([0, svg_width]);
       
       var yScale = d3.scaleBand()
@@ -254,8 +239,8 @@
         .paddingInner(0.05);
 
       var xaxis = d3.axisTop().scale(xScale)
-        .ticks(13)
-        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22,.24])
+        .ticks(20)
+        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22,.24,.26,.28,.3,.32,.34,.36,.38])
         .tickFormat(d => parseInt(100*d) + '%');
       
       var yaxis = d3.axisLeft().scale(yScale)
@@ -523,42 +508,6 @@
       svg.selectAll('rect')
         .attr('width', function(d,i) { return xScale(data[i]); });
       d3.selectAll('g').filter('.bar').data(data);
-      
-//       if (year == 1960) {
-//         svg.selectAll('rect')
-//           .attr('width', function(d,i) { return xScale(data1960[i]); });
-//         d3.selectAll('g').filter('.bar').data(data1960);
-//       }
-      
-//       else if (year == 1970) {
-//         svg.selectAll('rect')
-//           .attr('width', function(d,i) { return xScale(data1970[i]); });
-//         d3.selectAll('.bar').filter('.bar').data(data1970);
-//       }
-      
-//       else if (year == 1980) {
-//         svg.selectAll('rect')
-//           .attr('width', function(d,i) { return xScale(data1980[i]); });
-//         d3.selectAll('.bar').filter('.bar').data(data1980);
-//       }
-      
-//       else if (year == 1990) {
-//         svg.selectAll('rect')
-//           .attr('width', function(d,i) { return xScale(data1990[i]); });
-//         d3.selectAll('.bar').filter('.bar').data(data1990);
-//       }
-      
-//       else if (year == 2000) {
-//         svg.selectAll('rect')
-//           .attr('width', function(d,i) { return xScale(data2000[i]); });
-//         d3.selectAll('.bar').filter('.bar').data(data2000);
-//       }
-      
-//       else if (year == 2010) {
-//         svg.selectAll('rect')
-//           .attr('width', function(d,i) { return xScale(data2010[i]); });
-//         d3.selectAll('.bar').filter('.bar').data(data2010);
-//       }
       
     }
     
