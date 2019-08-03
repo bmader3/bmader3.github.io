@@ -123,7 +123,7 @@ body {
       
     }
     
-    function update_data(year) {
+    async function update_data(year) {
       var svg = d3.select('body').transition();
       svg.selectAll('bar').data(data1970)
         .attr('width', function(d) { return xScale(d); });
