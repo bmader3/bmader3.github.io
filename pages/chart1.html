@@ -132,7 +132,7 @@ body {
 //       }
       console.log(data1970);
       var svg = d3.select('body').transition();
-      svg.selectAll('bar')
+      svg.selectAll('rect')
         .attr('width', function(d,i) { return xScale(data1970[i]); });
     }
     
