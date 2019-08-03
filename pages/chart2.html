@@ -44,7 +44,7 @@ body {
   
   <script>
     async function main() {
-      var data = await d3.csv('/data/overview_data.csv');
+      var data = await d3.csv('/data/specific_data.csv');
 
       svg_width = 800;
       svg_height = 600;
@@ -55,10 +55,164 @@ body {
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
           .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+      
+      var idx = 0;
 
       ways = [];
-      for (var i = 0; i < data.length; i++) {
-        ways.push(data[i]['Way To Meet']);
+      for (var i = 0; i < 19; i++) {
+        var record = data[i]['Decade And Way'];
+        var way = record.substring(5,);
+        ways.push(way);
+      }
+      
+      male15_1960 = [];
+      male25_1960 = [];
+      male35_1960 = [];
+      male45_1960 = [];
+      male55_1960 = [];
+      
+      male15_1970 = [];
+      male25_1970 = [];
+      male35_1970 = [];
+      male45_1970 = [];
+      male55_1970 = [];
+      
+      male15_1980 = [];
+      male25_1980 = [];
+      male35_1980 = [];
+      male45_1980 = [];
+      male55_1980 = [];
+      
+      male15_1990 = [];
+      male25_1990 = [];
+      male35_1990 = [];
+      male45_1990 = [];
+      male55_1990 = [];
+      
+      male15_2000 = [];
+      male25_2000 = [];
+      male35_2000 = [];
+      male45_2000 = [];
+      male55_2000 = [];
+      
+      male15_2010 = [];
+      male25_2010 = [];
+      male35_2010 = [];
+      male45_2010 = [];
+      male55_2010 = [];
+      
+      female15_1960 = [];
+      female25_1960 = [];
+      female35_1960 = [];
+      female45_1960 = [];
+      female55_1960 = [];
+      
+      female15_1970 = [];
+      female25_1970 = [];
+      female35_1970 = [];
+      female45_1970 = [];
+      female55_1970 = [];
+      
+      female15_1980 = [];
+      female25_1980 = [];
+      female35_1980 = [];
+      female45_1980 = [];
+      female55_1980 = [];
+      
+      female15_1990 = [];
+      female25_1990 = [];
+      female35_1990 = [];
+      female45_1990 = [];
+      female55_1990 = [];
+      
+      female15_2000 = [];
+      female25_2000 = [];
+      female35_2000 = [];
+      female45_2000 = [];
+      female55_2000 = [];
+      
+      female15_2010 = [];
+      female25_2010 = [];
+      female35_2010 = [];
+      female45_2010 = [];
+      female55_2010 = [];
+      
+      for (var i = 0; i < ways.length; i++) {
+        male15_1960.push(data[i]['Male 15-24']);
+        male25_1960.push(data[i]['Male 25-34']);
+        male35_1960.push(data[i]['Male 35-44']);
+        male45_1960.push(data[i]['Male 45-54']);
+        male55_1960.push(data[i]['Male 55+']);
+        female15_1960.push(data[i]['Female 15-24']);
+        female25_1960.push(data[i]['Female 25-34']);
+        female35_1960.push(data[i]['Female 35-44']);
+        female45_1960.push(data[i]['Female 45-54']);
+        female55_1960.push(data[i]['Female 55+']);
+      }
+      
+      for (var i = ways.length; i < 2 * ways.length; i++) {
+        male15_1970.push(data[i]['Male 15-24']);
+        male25_1970.push(data[i]['Male 25-34']);
+        male35_1970.push(data[i]['Male 35-44']);
+        male45_1970.push(data[i]['Male 45-54']);
+        male55_1970.push(data[i]['Male 55+']);
+        female15_1970.push(data[i]['Female 15-24']);
+        female25_1970.push(data[i]['Female 25-34']);
+        female35_1970.push(data[i]['Female 35-44']);
+        female45_1970.push(data[i]['Female 45-54']);
+        female55_1970.push(data[i]['Female 55+']);
+      }
+      
+      for (var i = 2 * ways.length; i < 3 * ways.length; i++) {
+        male15_1980.push(data[i]['Male 15-24']);
+        male25_1980.push(data[i]['Male 25-34']);
+        male35_1980.push(data[i]['Male 35-44']);
+        male45_1980.push(data[i]['Male 45-54']);
+        male55_1980.push(data[i]['Male 55+']);
+        female15_1980.push(data[i]['Female 15-24']);
+        female25_1980.push(data[i]['Female 25-34']);
+        female35_1980.push(data[i]['Female 35-44']);
+        female45_1980.push(data[i]['Female 45-54']);
+        female55_1980.push(data[i]['Female 55+']);
+      }
+      
+      for (var i = 3 * ways.length; i < 4 * ways.length; i++) {
+        male15_1990.push(data[i]['Male 15-24']);
+        male25_1990.push(data[i]['Male 25-34']);
+        male35_1990.push(data[i]['Male 35-44']);
+        male45_1990.push(data[i]['Male 45-54']);
+        male55_1990.push(data[i]['Male 55+']);
+        female15_1990.push(data[i]['Female 15-24']);
+        female25_1990.push(data[i]['Female 25-34']);
+        female35_1990.push(data[i]['Female 35-44']);
+        female45_1990.push(data[i]['Female 45-54']);
+        female55_1990.push(data[i]['Female 55+']);
+      }
+      
+      for (var i = 4 * ways.length; i < 5 * ways.length; i++) {
+        male15_2000.push(data[i]['Male 15-24']);
+        male25_2000.push(data[i]['Male 25-34']);
+        male35_2000.push(data[i]['Male 35-44']);
+        male45_2000.push(data[i]['Male 45-54']);
+        male55_2000.push(data[i]['Male 55+']);
+        female15_2000.push(data[i]['Female 15-24']);
+        female25_2000.push(data[i]['Female 25-34']);
+        female35_2000.push(data[i]['Female 35-44']);
+        female45_2000.push(data[i]['Female 45-54']);
+        female55_2000.push(data[i]['Female 55+']);
+      }
+      
+      for (var i = 5 * ways.length; i < 6 * ways.length; i++) {
+        male15_2010.push(data[i]['Male 15-24']);
+        male25_2010.push(data[i]['Male 25-34']);
+        male35_2010.push(data[i]['Male 35-44']);
+        male45_2010.push(data[i]['Male 45-54']);
+        male55_2010.push(data[i]['Male 55+']);
+        female15_2010.push(data[i]['Female 15-24']);
+        female25_2010.push(data[i]['Female 25-34']);
+        female35_2010.push(data[i]['Female 35-44']);
+        female45_2010.push(data[i]['Female 45-54']);
+        female55_2010.push(data[i]['Female 55+']);
       }
 
       data1960 = [];
