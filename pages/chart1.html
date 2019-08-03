@@ -17,24 +17,24 @@ body {
   stroke: black;
   shape-rendering: crispEdges;
 }
-.btn-group button {
+.button-group {
+  width: svg_width + margin.left + margin.right;
+}
+.button-group button {
   background-color: DarkGray;
   border: 3px solid DimGray;
   color: white;
   padding: 10px 24px;
   float: left;
-  width: svg_width + margin.left + margin.right;
-}
-.btn-group button:hover {
-  background-color: SlateGray;
-}
-button {
   width: 16.666667%
+}
+.button-group button:hover {
+  background-color: SlateGray;
 }
 </style>
 
 <body onload='main()'>
-  <div class='bttn-grp'>
+  <div class='button-group'>
     <button onclick='update_data(1960)'>1960</button>
     <button onclick='update_data(1970)'>1970</button>
     <button onclick='update_data(1980)'>1980</button>
