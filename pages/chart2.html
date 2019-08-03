@@ -1,24 +1,199 @@
-.tooltip {	
-  position: absolute;
-  text-align: center;
-  width: 90px;
-  height: 40px;
-  padding: 4px;
-  font: 12px "Lucida Console";
-  background-color: snow;
-  border: 2px DimGray;
-  color: black;
-  pointer-events: none;
+<html>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+
+<style>
+body {
+  font: 14px sans-serif;
+}
+.bar {
+  fill: silver;
+}
+.bar text {
+  fill: black;
+  font: 14px "Lucida Console";
+}
+.axis path, .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+.button-group button {
+  background-color: DarkGray;
+  border: 3px solid DimGray;
+  color: white;
+  padding: 10px 24px;
+  float: left;
+  font: 18px "Lucida Console";
+  width: 16.666667%;
+}
+.button-group button:hover {
+  background-color: SlateGray;
 }
 
-bar.append('rect')
+</style>
+
+<body onload='main()'>
+  <div class='button-group' style='width:860' id='buttons'>
+    <button onclick='update_data(1960)'>1960</button>
+    <button onclick='update_data(1970)'>1970</button>
+    <button onclick='update_data(1980)'>1980</button>
+    <button onclick='update_data(1990)'>1990</button>
+    <button onclick='update_data(2000)'>2000</button>
+    <button onclick='update_data(2010)'>2010</button>
+  </div>
+  
+  <script>
+    async function main() {
+      var data = await d3.csv('/data/overview_data.csv');
+
+      svg_width = 800;
+      svg_height = 600;
+      margin = {top: 80, left: 40, right: 20, bottom: 20};
+
+      var svg = d3.select('body').insert('svg', '#buttons')
+        .attr('width', svg_width + margin.left + margin.right)
+        .attr('height', svg_height + margin.top + margin.bottom)
+        .append('g')
+          .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+
+      ways = [];
+      for (var i = 0; i < data.length; i++) {
+        ways.push(data[i]['Way To Meet']);
+      }
+
+      data1960 = [];
+      for (var i = 0; i < data.length; i++) {
+        data1960.push(parseFloat(data[i]['1960s']));
+      }
+
+      data1970 = [];
+      for (var i = 0; i < data.length; i++) {
+        data1970.push(parseFloat(data[i]['1970s']));
+      }
+
+      data1980 = [];
+      for (var i = 0; i < data.length; i++) {
+        data1980.push(parseFloat(data[i]['1980s']));
+      }
+
+      data1990 = [];
+      for (var i = 0; i < data.length; i++) {
+        data1990.push(parseFloat(data[i]['1990s']));
+      }
+
+      data2000 = [];
+      for (var i = 0; i < data.length; i++) {
+        data2000.push(parseFloat(data[i]['2000s']));
+      }
+
+      data2010 = [];
+      for (var i = 0; i < data.length; i++) {
+        data2010.push(parseFloat(data[i]['2010s']));
+      }
+
+      xScale = d3.scaleLinear()
+        .domain([0,0.22])
+        .range([0, svg_width]);
+      
+      var yScale = d3.scaleBand()
+        .domain(d3.range(ways.length))
+        .range([0, svg_height])
+        .paddingInner(0.05);
+
+      var xaxis = d3.axisTop().scale(xScale)
+        .ticks(12)
+        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22])
+        .tickFormat(d => parseInt(100*d) + '%');
+      
+      var yaxis = d3.axisLeft().scale(yScale)
+        .ticks(ways.length)
+        .tickValues(d3.range(ways.length))
+        .tickFormat(d => d+1);
+      
+      var tooltip = d3.select('body').append('div')
+        .attr('class', 'tooltip')
+        .attr('id', 'tooltip')
+        .style('opacity', 0);
+      
+      var start_data = [];
+      for (var i = 0; i < ways.length; i++) {
+        start_data.push(0);
+      }
+
+      var bar = svg.selectAll('g').data(start_data)
+        .enter()
+        .append('g')
+        .attr('class', 'bar')
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
+
+      bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
-        .attr('height', yScale.bandwidth())
-        .on('mouseover', function(d) {
-          tooltip.style('opacity', 0.9);
-          document.getElementById('tooltip').innerHTML = "" + (100*d) + "% of couples met this way";
-          tooltip.style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) - 50 + 'px');})
-        .on('mouseout', function(d) {
-          tooltip.style('opacity', 0);
-          document.getElementById('tooltip').innerHTML="";});
+        .attr('height', yScale.bandwidth());
+
+      bar.append('text')
+        .attr('text-anchor', 'left')
+        .attr('x', 5)
+        .attr('y', yScale.bandwidth() / 2)
+        .attr('dy', '.35em')
+        .text(function(d,i) { return ways[i]; });
+      
+      svg.append('g')
+        .call(yaxis);
+      svg.append('g')
+        .call(xaxis);
+
+      d3.select('svg').append('text')
+        .attr('x', (svg_width + margin.left + margin.right) / 2 )
+        .attr('y', margin.top / 2)
+        .attr('text-anchor', 'middle')
+        .style('font', '20px "Lucida Console"')
+        .text('How Couples Met By Decade');
+      
+    }
+    
+    function update_data(year) {
+      var svg = d3.select('body').transition().duration(1000);
+      
+      if (year == 1960) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1960[i]); });
+        d3.selectAll('g').filter('.bar').data(data1960);
+      }
+      
+      else if (year == 1970) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1970[i]); });
+        d3.selectAll('.bar').filter('.bar').data(data1970);
+      }
+      
+      else if (year == 1980) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1980[i]); });
+        d3.selectAll('.bar').filter('.bar').data(data1980);
+      }
+      
+      else if (year == 1990) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1990[i]); });
+        d3.selectAll('.bar').filter('.bar').data(data1990);
+      }
+      
+      else if (year == 2000) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data2000[i]); });
+        d3.selectAll('.bar').filter('.bar').data(data2000);
+      }
+      
+      else if (year == 2010) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data2010[i]); });
+        d3.selectAll('.bar').filter('.bar').data(data2010);
+      }
+      
+    }
+    
+  </script>
+  
+</body>
+
+</html>
