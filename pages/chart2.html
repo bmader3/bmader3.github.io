@@ -17,7 +17,7 @@ body {
   stroke: black;
   shape-rendering: crispEdges;
 }
-.button-group button {
+/* .button-group button {
   background-color: DarkGray;
   border: 3px solid DimGray;
   color: white;
@@ -28,18 +28,29 @@ body {
 }
 .button-group button:hover {
   background-color: SlateGray;
-}
+} */
 
 </style>
 
 <body onload='main()'>
-  <div class='button-group' style='width:860' id='buttons'>
-    <button onclick='update_data(1960)'>1960</button>
-    <button onclick='update_data(1970)'>1970</button>
-    <button onclick='update_data(1980)'>1980</button>
-    <button onclick='update_data(1990)'>1990</button>
-    <button onclick='update_data(2000)'>2000</button>
-    <button onclick='update_data(2010)'>2010</button>
+  
+  <div class='selector' style-'width:860' id='selector'>
+    See how a <select>
+      <option value='Male'>Male</option>
+      <option value='Female'>Female</option>
+    </select> aged <select>
+      <option value='15-24'>15-24</option>
+      <option value='25-34'>25-34</option>
+      <option value='35-44'>35-44</option>
+      <option value='55'>55+</option>
+    </select> in the <select>
+      <option value='1960'>1960s</option>
+      <option value='1970'>1970s</option>
+      <option value='1980'>1980s</option>
+      <option value='1990'>1990s</option>
+      <option value='2000'>2000s</option>
+      <option value='2010'>2010s</option>
+    </select> was likely to meet their partner.
   </div>
   
   <script>
@@ -50,7 +61,7 @@ body {
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
 
-      var svg = d3.select('body').insert('svg', '#buttons')
+      var svg = d3.select('body').insert('svg', '#selector')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
@@ -215,38 +226,8 @@ body {
         female55_2010.push(data[i]['Female 55+']);
       }
 
-      data1960 = [];
-      for (var i = 0; i < data.length; i++) {
-        data1960.push(parseFloat(data[i]['1960s']));
-      }
-
-      data1970 = [];
-      for (var i = 0; i < data.length; i++) {
-        data1970.push(parseFloat(data[i]['1970s']));
-      }
-
-      data1980 = [];
-      for (var i = 0; i < data.length; i++) {
-        data1980.push(parseFloat(data[i]['1980s']));
-      }
-
-      data1990 = [];
-      for (var i = 0; i < data.length; i++) {
-        data1990.push(parseFloat(data[i]['1990s']));
-      }
-
-      data2000 = [];
-      for (var i = 0; i < data.length; i++) {
-        data2000.push(parseFloat(data[i]['2000s']));
-      }
-
-      data2010 = [];
-      for (var i = 0; i < data.length; i++) {
-        data2010.push(parseFloat(data[i]['2010s']));
-      }
-
       xScale = d3.scaleLinear()
-        .domain([0,0.22])
+        .domain([0,0.25])
         .range([0, svg_width]);
       
       var yScale = d3.scaleBand()
@@ -255,19 +236,14 @@ body {
         .paddingInner(0.05);
 
       var xaxis = d3.axisTop().scale(xScale)
-        .ticks(12)
-        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22])
+        .ticks(13)
+        .tickValues([0,.02,.04,.06,.08,.10,.12,.14,.16,.18,.20,.22,.24])
         .tickFormat(d => parseInt(100*d) + '%');
       
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(ways.length)
         .tickValues(d3.range(ways.length))
         .tickFormat(d => d+1);
-      
-      var tooltip = d3.select('body').append('div')
-        .attr('class', 'tooltip')
-        .attr('id', 'tooltip')
-        .style('opacity', 0);
       
       var start_data = [];
       for (var i = 0; i < ways.length; i++) {
