@@ -110,11 +110,6 @@ body {
         .tickValues(d3.range(ways.length))
         .tickFormat(d => d+1);
       
-      var tooltip = d3.select('body').append('div')
-        .attr('class', 'tooltip')
-        .attr('id', 'tooltip')
-        .style('opacity', 0);
-      
       var start_data = [];
       for (var i = 0; i < ways.length; i++) {
         start_data.push(0);
