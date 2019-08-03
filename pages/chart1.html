@@ -110,8 +110,13 @@ body {
         .ticks(ways.length)
         .tickValues(d3.range(ways.length))
         .tickFormat(d => d+1);
+      
+      var start_data = [];
+      for (var i = 0; i < ways.length; i++) {
+        start_data.push(0);
+      }
 
-      var bar = svg.selectAll('g').data(data1960)
+      var bar = svg.selectAll('g').data(start_data)
         .enter()
         .append('g')
         .attr('class', 'bar')
