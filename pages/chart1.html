@@ -132,8 +132,8 @@ body {
 //       }
       console.log(data1970);
       var svg = d3.select('body').transition();
-      svg.selectAll('bar').data(data1970)
-        .attr('width', function(d) { return xScale(d); });
+      svg.selectAll('bar')
+        .attr('width', function(d,i) { return xScale(data1970[i]); });
     }
     
   </script>
