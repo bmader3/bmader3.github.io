@@ -34,7 +34,7 @@ body {
 </style>
 
 <body onload='main()'>
-  <div class='button-group' style='width:860'>
+  <div class='button-group' style='width:860' id='buttons'>
     <button onclick='update_data(1960)'>1960</button>
     <button onclick='update_data(1970)'>1970</button>
     <button onclick='update_data(1980)'>1980</button>
@@ -51,7 +51,7 @@ body {
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
 
-      var svg = d3.select('body').insert('svg')
+      var svg = d3.select('body').insert('svg', '#buttons')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
