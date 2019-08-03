@@ -124,7 +124,8 @@ body {
     }
     
     function update_data(year) {
-      d3.selectAll('bar').data(data1970)
+      console.log(data1970);
+      d3.select('body').selectAll('bar').data(data1970)
         .transition().duration(1000)
         .attr('width', function(d) { return xScale(d); });
     }
