@@ -134,7 +134,7 @@ body {
       var svg = d3.select('body').transition();
       svg.selectAll('rect')
         .attr('width', function(d,i) { return xScale(data1970[i]); });
-      svg.selectAll('bar').data(data1970);
+      d3.selectAll('.bar').data(data1970);
     }
     
   </script>
