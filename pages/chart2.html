@@ -38,21 +38,29 @@
     padding: 10px 24px;
     float: middle;
   }
+  
+  .selector menu {
+    font: 20px "Lucida Console";
+  }
+  
+  .selector vis {
+    font: 20px "Lucida Console";
+  }
 
 </style>
 
 <body onload='main()'>
   
   <div class='selector' style='width:860' id='selector'>
-    See how a <select>
+    See how a <select class='menu' id='gender_opt'>
       <option value='Male'>Male</option>
       <option value='Female'>Female</option>
-    </select> aged <select>
+    </select> aged <select class='menu' id='age_opt'>
       <option value='15-24'>15-24</option>
       <option value='25-34'>25-34</option>
       <option value='35-44'>35-44</option>
       <option value='55'>55+</option>
-    </select> in the <select>
+    </select> in the <select class='menu' id='decade_opt'>
       <option value='1960'>1960s</option>
       <option value='1970'>1970s</option>
       <option value='1980'>1980s</option>
@@ -60,7 +68,7 @@
       <option value='2000'>2000s</option>
       <option value='2010'>2010s</option>
     </select> was likely to meet their partner.  
-    <button onclick='update_data()'>Visualize</button>
+    <button class='vis' onclick='update_data()'>Visualize</button>
   </div>
   
   <script>
@@ -292,43 +300,265 @@
     }
     
     function update_data(year) {
+      
+      var gender = document.getElementById('gender_opt');
+      gender = gender.options[gender.selectedIndex].value;
+      var age = document.getElementById('age_opt');
+      age = age.options[age.selectedIndex].value;
+      var decade = document.getElementById('decade_opt');
+      decade = decade.options[decade.selectedIndex].value;
+      
+      var data;
+      
+      if (gender == 'Male') {
+        if (decade == '1960') {
+          if (age == '15-24') {
+            data = male15_1960;
+          }
+          else if (age == '25-34') {
+            data = male25_1960;
+          }
+          else if (age == '35-44') {
+            data = male35_1960;
+          }
+          else if (age == '45-54') {
+            data = male45_1960;
+          }
+          else {
+            data = male55_1960;
+          }
+        }
+        else if (decade == '1970') {
+          if (age == '15-24') {
+            data = male15_1970;
+          }
+          else if (age == '25-34') {
+            data = male25_1970;
+          }
+          else if (age == '35-44') {
+            data = male35_1970;
+          }
+          else if (age == '45-54') {
+            data = male45_1970;
+          }
+          else {
+            data = male55_1970;
+          }
+        }
+        else if (decade == '1980') {
+          if (age == '15-24') {
+            data = male15_1980;
+          }
+          else if (age == '25-34') {
+            data = male25_1980;
+          }
+          else if (age == '35-44') {
+            data = male35_1980;
+          }
+          else if (age == '45-54') {
+            data = male45_1980;
+          }
+          else {
+            data = male55_1980;
+          }
+        }
+        else if (decade == '1990') {
+          if (age == '15-24') {
+            data = male15_1990;
+          }
+          else if (age == '25-34') {
+            data = male25_1990;
+          }
+          else if (age == '35-44') {
+            data = male35_1990;
+          }
+          else if (age == '45-54') {
+            data = male45_1990;
+          }
+          else {
+            data = male55_1990;
+          }
+        }
+        else if (decade == '2000') {
+          if (age == '15-24') {
+            data = male15_2000;
+          }
+          else if (age == '25-34') {
+            data = male25_2000;
+          }
+          else if (age == '35-44') {
+            data = male35_2000;
+          }
+          else if (age == '45-54') {
+            data = male45_2000;
+          }
+          else {
+            data = male55_2000;
+          }
+        }
+        else {
+          if (age == '15-24') {
+            data = male15_2010;
+          }
+          else if (age == '25-34') {
+            data = male25_2010;
+          }
+          else if (age == '35-44') {
+            data = male35_2010;
+          }
+          else if (age == '45-54') {
+            data = male45_2010;
+          }
+          else {
+            data = male55_2010;
+          }
+        }
+      }
+      
+      else {
+        if (decade == '1960') {
+          if (age == '15-24') {
+            data = female15_1960;
+          }
+          else if (age == '25-34') {
+            data = female25_1960;
+          }
+          else if (age == '35-44') {
+            data = female35_1960;
+          }
+          else if (age == '45-54') {
+            data = female45_1960;
+          }
+          else {
+            data = female55_1960;
+          }
+        }
+        else if (decade == '1970') {
+          if (age == '15-24') {
+            data = female15_1970;
+          }
+          else if (age == '25-34') {
+            data = female25_1970;
+          }
+          else if (age == '35-44') {
+            data = female35_1970;
+          }
+          else if (age == '45-54') {
+            data = female45_1970;
+          }
+          else {
+            data = female55_1970;
+          }
+        }
+        else if (decade == '1980') {
+          if (age == '15-24') {
+            data = female15_1980;
+          }
+          else if (age == '25-34') {
+            data = female25_1980;
+          }
+          else if (age == '35-44') {
+            data = female35_1980;
+          }
+          else if (age == '45-54') {
+            data = female45_1980;
+          }
+          else {
+            data = female55_1980;
+          }
+        }
+        else if (decade == '1990') {
+          if (age == '15-24') {
+            data = female15_1990;
+          }
+          else if (age == '25-34') {
+            data = female25_1990;
+          }
+          else if (age == '35-44') {
+            data = female35_1990;
+          }
+          else if (age == '45-54') {
+            data = female45_1990;
+          }
+          else {
+            data = female55_1990;
+          }
+        }
+        else if (decade == '2000') {
+          if (age == '15-24') {
+            data = female15_2000;
+          }
+          else if (age == '25-34') {
+            data = female25_2000;
+          }
+          else if (age == '35-44') {
+            data = female35_2000;
+          }
+          else if (age == '45-54') {
+            data = female45_2000;
+          }
+          else {
+            data = female55_2000;
+          }
+        }
+        else {
+          if (age == '15-24') {
+            data = female15_2010;
+          }
+          else if (age == '25-34') {
+            data = female25_2010;
+          }
+          else if (age == '35-44') {
+            data = female35_2010;
+          }
+          else if (age == '45-54') {
+            data = female45_2010;
+          }
+          else {
+            data = female55_2010;
+          }
+        }
+      }
       var svg = d3.select('body').transition().duration(1000);
+      svg.selectAll('rect')
+        .attr('width', function(d,i) { return xScale(data[i]); });
+      d3.selectAll('g').filter('.bar').data(data);
       
-      if (year == 1960) {
-        svg.selectAll('rect')
-          .attr('width', function(d,i) { return xScale(data1960[i]); });
-        d3.selectAll('g').filter('.bar').data(data1960);
-      }
+//       if (year == 1960) {
+//         svg.selectAll('rect')
+//           .attr('width', function(d,i) { return xScale(data1960[i]); });
+//         d3.selectAll('g').filter('.bar').data(data1960);
+//       }
       
-      else if (year == 1970) {
-        svg.selectAll('rect')
-          .attr('width', function(d,i) { return xScale(data1970[i]); });
-        d3.selectAll('.bar').filter('.bar').data(data1970);
-      }
+//       else if (year == 1970) {
+//         svg.selectAll('rect')
+//           .attr('width', function(d,i) { return xScale(data1970[i]); });
+//         d3.selectAll('.bar').filter('.bar').data(data1970);
+//       }
       
-      else if (year == 1980) {
-        svg.selectAll('rect')
-          .attr('width', function(d,i) { return xScale(data1980[i]); });
-        d3.selectAll('.bar').filter('.bar').data(data1980);
-      }
+//       else if (year == 1980) {
+//         svg.selectAll('rect')
+//           .attr('width', function(d,i) { return xScale(data1980[i]); });
+//         d3.selectAll('.bar').filter('.bar').data(data1980);
+//       }
       
-      else if (year == 1990) {
-        svg.selectAll('rect')
-          .attr('width', function(d,i) { return xScale(data1990[i]); });
-        d3.selectAll('.bar').filter('.bar').data(data1990);
-      }
+//       else if (year == 1990) {
+//         svg.selectAll('rect')
+//           .attr('width', function(d,i) { return xScale(data1990[i]); });
+//         d3.selectAll('.bar').filter('.bar').data(data1990);
+//       }
       
-      else if (year == 2000) {
-        svg.selectAll('rect')
-          .attr('width', function(d,i) { return xScale(data2000[i]); });
-        d3.selectAll('.bar').filter('.bar').data(data2000);
-      }
+//       else if (year == 2000) {
+//         svg.selectAll('rect')
+//           .attr('width', function(d,i) { return xScale(data2000[i]); });
+//         d3.selectAll('.bar').filter('.bar').data(data2000);
+//       }
       
-      else if (year == 2010) {
-        svg.selectAll('rect')
-          .attr('width', function(d,i) { return xScale(data2010[i]); });
-        d3.selectAll('.bar').filter('.bar').data(data2010);
-      }
+//       else if (year == 2010) {
+//         svg.selectAll('rect')
+//           .attr('width', function(d,i) { return xScale(data2010[i]); });
+//         d3.selectAll('.bar').filter('.bar').data(data2010);
+//       }
       
     }
     
