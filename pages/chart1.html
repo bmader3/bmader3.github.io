@@ -24,7 +24,7 @@ body {
   
   <script>
     async function main() {
-      data = await d3.csv('/data/overview_data.csv');
+      var data = await d3.csv('/data/overview_data.csv');
 
       var svg_width = 800;
       var svg_height = 600;
@@ -46,7 +46,7 @@ body {
         data1960.push(parseFloat(data[i]['1960s']));
       }
 
-      data1970 = [];
+      var data1970 = [];
       for (var i = 0; i < data.length; i++) {
         data1970.push(parseFloat(data[i]['1970s']));
       }
@@ -124,6 +124,12 @@ body {
     }
     
     async function update_data(year) {
+      
+      var data = await d3.csv('/data/overview_data.csv');
+      var data1970 = [];
+      for (var i = 0; i < data.length; i++) {
+        data1970.push(parseFloat(data[i]['1970s']));
+      }      
       var svg = d3.select('body').transition();
       svg.selectAll('bar').data(data1970)
         .attr('width', function(d) { return xScale(d); });
