@@ -29,18 +29,7 @@ body {
 .button-group button:hover {
   background-color: SlateGray;
 }
-.tooltip {	
-  position: absolute;
-  text-align: center;
-  width: 90px;
-  height: 40px;
-  padding: 4px;
-  font: 12px "Lucida Console";
-  background-color: snow;
-  border: 2px DimGray;
-  color: black;
-  pointer-events: none;
-}
+
 </style>
 
 <body onload='main()'>
@@ -139,15 +128,7 @@ body {
 
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
-        .attr('height', yScale.bandwidth())
-        .on('mouseover', function(d) {
-          tooltip.style('opacity', 0.9);
-          document.getElementById('tooltip').innerHTML = "" + (100*d) + "% of couples met this way";
-          tooltip.style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) - 50 + 'px');})
-        .on('mouseout', function(d) {
-          tooltip.style('opacity', 0);
-          document.getElementById('tooltip').innerHTML="";});
+        .attr('height', yScale.bandwidth());
 
       bar.append('text')
         .attr('text-anchor', 'left')
@@ -171,12 +152,12 @@ body {
     }
     
     function update_data(year) {
-      var svg = d3.select('body').transition();
+      var svg = d3.select('body').transition().duration(1000);
       
       if (year == 1960) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1960[i]); });
-        d3.selectAll('g').filter('.bar').update().remove().data(data1960);
+        d3.selectAll('g').filter('.bar').data(data1960);
       }
       
       else if (year == 1970) {
