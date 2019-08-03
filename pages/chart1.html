@@ -123,6 +123,7 @@ body {
       
       var tooltip = d3.select('body').append('div')
         .attr('class', 'tooltip')
+        .attr('id', 'tooltip')
         .style('opacity', 0);
       
       var start_data = [];
@@ -141,12 +142,12 @@ body {
         .attr('height', yScale.bandwidth())
         .on('mouseover', function(d) {
           tooltip.style('opacity', 0.9);
-          tooltip.innerHTML = "" + (100*d) + "% of couples met this way";
+          document.getElementById('tooltip').innerHTML = "" + (100*d) + "% of couples met this way";
           tooltip.style('left', (d3.event.pageX) + 'px')
             .style('top', (d3.event.pageY) - 50 + 'px');})
         .on('mouseout', function(d) {
           tooltip.style('opacity', 0);
-          tooltip.innerHTML="";});
+          document.getElementById('tooltip').innerHTML="";});
 
       bar.append('text')
         .attr('text-anchor', 'left')
