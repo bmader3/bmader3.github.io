@@ -176,37 +176,37 @@ body {
       if (year == 1960) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1960[i]); });
-          d3.selectAll('g').filter('.bar').data(data1960);
+        d3.selectAll('g').filter('.bar').update().remove().data(data1960);
       }
       
       else if (year == 1970) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1970[i]); });
-          d3.selectAll('.bar').filter('.bar').data(data1970);
+        d3.selectAll('.bar').filter('.bar').data(data1970);
       }
       
       else if (year == 1980) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1980[i]); });
-          d3.selectAll('.bar').filter('.bar').data(data1980);
+        d3.selectAll('.bar').filter('.bar').data(data1980);
       }
       
       else if (year == 1990) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1990[i]); });
-          d3.selectAll('.bar').filter('.bar').data(data1990);
+        d3.selectAll('.bar').filter('.bar').data(data1990);
       }
       
       else if (year == 2000) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data2000[i]); });
-          d3.selectAll('.bar').filter('.bar').data(data2000);
+        d3.selectAll('.bar').filter('.bar').data(data2000);
       }
       
       else if (year == 2010) {
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data2010[i]); });
-          d3.selectAll('.bar').filter('.bar').data(data2010);
+        d3.selectAll('.bar').filter('.bar').data(data2010);
       }
       
     }
