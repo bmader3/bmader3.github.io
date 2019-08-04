@@ -116,7 +116,7 @@ body {
         .enter()
         .append('g')
         .attr('class', 'bar')
-        .attr('transform', function(d,i) { return 'translate(0,' + decades(i) + ')'; });
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(decades[i]) + ')'; });
       
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
