@@ -32,13 +32,16 @@
   .annotation {
     font: 12px "Lucida Console";
   }
-  .slide-panel slide {
+  .slide-panel button {
     background-color: Gainsboro;
     border: 3px solid DimGray;
     font: 16px "Lucida Console";
     padding: 10px 24px;
     float:left;
     width: 20%;
+  }
+  .slide-panel button:hover {
+    background-color: SlateGray;
   }
 </style>
 
@@ -53,11 +56,11 @@
   </div>
   
   <div class='slide-panel' style='width:860' id='slidepanel'>
-    <div class='slide'><a href='/pages/index.html'>Start</a></div>
-    <div class='slide'><a href='/pages/chart1.html'>Overview</a></div>
-    <div class='slide'><a href='/pages/chart2.html'>Slide 1</a></div>
-    <div class='slide'><a href='/pages/chart3.html'>Slide 2</a></div>
-    <div class='slide'><a href='/pages/chart3.html'>Slide 3</a></div>
+    <button onclick="location.href = 'https://bmader3.github.io/index.html';">Start</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart1.html';">Overview</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart2.html';">Slide 1</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart3.html';">Slide 2</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart4.html';">Slide 3</button>
   </div>
   
   <script>
