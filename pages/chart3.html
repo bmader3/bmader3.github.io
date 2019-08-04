@@ -52,21 +52,55 @@
   .slide-panel button:hover {
     background-color: SlateGray;
   }
+  .title {
+    font-family: "Lucida Console";
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    font-family: "Lucida Console";
+    font-size: 26px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .body-text {
+    font-family: "Lucida Console";
+    font-size: 16px;
+    font-weight: normal;
+  }
 </style>
 
 <body onload='main()'>
   
-  <div id='slides'> </div>
-  <div style='width: 860; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align:center;'>
+  <h1 class='title'>Slide 2: The Relationship Timeline</h1>
+  <h2 class='subtitle'>How Have The Milestones Of A Relationship Moved Over Time?</h2>
+  
+  <div class='body-text' style='margin-left: 50px; margin-right: 50px;'>
+    This interactive timeline lets you see how the major milestones of being in a relationship--becoming partners (after meeting
+    someone), moving in together, and getting married--have shifted in length as the decades have gone on. By visualizing all five
+    decades studied at once, you can immediately see the trend that people are waiting longer to label their relationship with
+    any of the major milestones, as well as spreading out the milestones more evenly (i.e. we don't move in together and get married
+    at the same time like we used to). Be sure to move your mouse over each highlighted circle in the chart to see the exact values!
+  </div>
+  
+  <div class='container' id='container' style='text-align:center;'></div>
+  
+  <div style='width: 860px; margin: auto; text-align: center;'>
+  <div> </div>
+  <div style='width: 860px; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align: center;'>
     Use the panel below to navigate between pages in the slideshow.</div>
   <div> </div>
   
-  <div class='slide-panel' style='width:860; margin-bottom: 50px;' id='slidepanel'>
+  <div class='slide-panel' style='width:860px; margin-bottom: 50px; text-align: center;' id='slidepanel'>
     <button onclick="location.href = 'https://bmader3.github.io/index.html';">Start</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart1.html';">Overview</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart2.html';">Slide 1</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart3.html';">Slide 2</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart4.html';">Slide 3</button>
+  </div>
   </div>
   
   <script>
@@ -75,7 +109,7 @@
       svg_width = 800;
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
-      var svg = d3.select('body').insert('svg', '#slides')
+      var svg = d3.select('#container').insert('svg', '#slidepanel')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
