@@ -1,0 +1,346 @@
+<html>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+
+<style>
+  body {
+    font: 14px sans-serif;
+  }
+  .bar {
+    fill: silver;
+  }
+  .bar text {
+    fill: black;
+    font: 14px "Lucida Console";
+  }
+  .axis path, .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  .button-group button {
+    background-color: DarkGray;
+    border: 3px solid DimGray;
+    color: white;
+    padding: 10px 24px;
+    float: left;
+    font: 18px "Lucida Console";
+    width: 16.666667%;
+  }
+  .button-group button:hover {
+    background-color: SlateGray;
+  }
+  .annotation {
+    font: 10px "Lucida Console";
+  }
+</style>
+
+<body onload='main()'>
+  <div class='button-group' style='width:860' id='buttons'>
+    <button onclick='update_data(1960)'>1960</button>
+    <button onclick='update_data(1970)'>1970</button>
+    <button onclick='update_data(1980)'>1980</button>
+    <button onclick='update_data(1990)'>1990</button>
+    <button onclick='update_data(2000)'>2000</button>
+    <button onclick='update_data(2010)'>2010</button>
+  </div>
+  
+  <script>
+    async function main() {
+      var data = await d3.csv('/data/quality_data.csv');
+      svg_width = 800;
+      svg_height = 600;
+      margin = {top: 80, left: 40, right: 20, bottom: 20};
+      var svg = d3.select('body').insert('svg', '#buttons')
+        .attr('width', svg_width + margin.left + margin.right)
+        .attr('height', svg_height + margin.top + margin.bottom)
+        .append('g')
+          .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+          
+      quals = [];
+      quals.push('Very Poor');
+      quals.push('Poor');
+      quals.push('Fair');
+      quals.push('Good');
+      quals.push('Excellent');
+      
+      data1960 = [];
+      data1960.push(data[0]['Very Poor']);
+      data1960.push(data[0]['Poor']);
+      data1960.push(data[0]['Fair']);
+      data1960.push(data[0]['Good']);
+      data1960.push(data[0]['Excellent']);
+      
+      data1970 = [];
+      data1970.push(data[1]['Very Poor']);
+      data1970.push(data[1]['Poor']);
+      data1970.push(data[1]['Fair']);
+      data1970.push(data[1]['Good']);
+      data1970.push(data[1]['Excellent']);
+      
+      data1980 = [];
+      data1980.push(data[2]['Very Poor']);
+      data1980.push(data[2]['Poor']);
+      data1980.push(data[2]['Fair']);
+      data1980.push(data[2]['Good']);
+      data1980.push(data[2]['Excellent']);
+      
+      data1990 = [];
+      data1990.push(data[3]['Very Poor']);
+      data1990.push(data[3]['Poor']);
+      data1990.push(data[3]['Fair']);
+      data1990.push(data[3]['Good']);
+      data1990.push(data[3]['Excellent']);
+      
+      data2000 = [];
+      data2000.push(data[4]['Very Poor']);
+      data2000.push(data[4]['Poor']);
+      data2000.push(data[4]['Fair']);
+      data2000.push(data[4]['Good']);
+      data2000.push(data[4]['Excellent']);
+      
+      data2010 = [];
+      data2010.push(data[5]['Very Poor']);
+      data2010.push(data[5]['Poor']);
+      data2010.push(data[5]['Fair']);
+      data2010.push(data[5]['Good']);
+      data2010.push(data[5]['Excellent']);
+      
+      xScale = d3.scaleLinear()
+        .domain([0,0.74])
+        .range([0, svg_width]);
+      
+      var yScale = d3.scaleBand()
+        .domain(d3.range(quals.length))
+        .range([0, svg_height])
+        .paddingInner(0.1);
+        
+      var xaxis = d3.axisTop().scale(xScale)
+        .tickFormat(d => parseInt(100*d) + '%');
+      
+      var yaxis = d3.axisLeft().scale(yScale)
+        .ticks(quals.length)
+        .tickValues(quals)
+      
+      var start_data = [];
+      for (var i = 0; i < ways.length; i++) {
+        start_data.push(0);
+      }
+      var bar = svg.selectAll('g').data(start_data)
+        .enter()
+        .append('g')
+        .attr('class', 'bar')
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
+      bar.append('rect')
+        .attr('width', function(d) { return xScale(d); })
+        .attr('height', yScale.bandwidth());
+      bar.append('text')
+        .attr('text-anchor', 'left')
+        .attr('x', 5)
+        .attr('y', yScale.bandwidth() / 2)
+        .attr('dy', '.35em')
+        .text(function(d,i) { return ways[i]; });
+      
+      svg.append('g')
+        .call(yaxis);
+      svg.append('g')
+        .call(xaxis);
+      
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a60_1_1')
+        .style('opacity', 0)
+        .attr('x', xScale(data1960[6]) + 10)
+        .attr('y', yScale(6) + yScale.bandwidth() / 2 - 5)
+        .attr('text-anchor', 'left')
+        .text('Less importance on college degree (esp. for women).');
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a60_1_2')
+        .style('opacity', 0)
+        .attr('x', xScale(data1960[6]) + 10)
+        .attr('y', yScale(6) + yScale.bandwidth() / 2 + 5)
+        .attr('text-anchor', 'left')
+        .text('Lots of high school sweethearts.');
+      
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a70_1_1')
+        .style('opacity', 0)
+        .attr('x', xScale(data1970[2]) + 10)
+        .attr('y', yScale(2) + yScale.bandwidth() / 2 - 5)
+        .attr('text-anchor', 'left')
+        .text('Peak of meeting through family / friends.');
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a70_1_2')
+        .style('opacity', 0)
+        .attr('x', xScale(data1970[2]) + 10)
+        .attr('y', yScale(2) + yScale.bandwidth() / 2 + 5)
+        .attr('text-anchor', 'left')
+        .text('Potentially a reaction to counter-culture revolution.');
+      
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a80_1_1')
+        .style('opacity', 0)
+        .attr('x', xScale(0.1))
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 - 5)
+        .attr('text-anchor', 'left')
+        .text('Era of mingling through personal accessible channels.');
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a80_1_2')
+        .style('opacity', 0)
+        .attr('x', xScale(0.1))
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 + 5)
+        .attr('text-anchor', 'left')
+        .text('This distribution probably gave rise to sitcoms like "Friends"!');
+      
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a90_1_1')
+        .style('opacity', 0)
+        .attr('x', xScale(.04))
+        .attr('y', yScale(11) + yScale.bandwidth() / 2)
+        .attr('text-anchor', 'left')
+        .text('Interestingly, blind dates monotonically decline over time.');
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a90_1_2')
+        .style('opacity', 0)
+        .attr('x', xScale(0.03))
+        .attr('y', yScale(17) + yScale.bandwidth() / 2)
+        .attr('text-anchor', 'left')
+        .text('Watch the explosion here over the next two decades...');
+      
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a00_1_1')
+        .style('opacity', 0)
+        .attr('x', xScale(.08))
+        .attr('y', yScale(6) + yScale.bandwidth())
+        .attr('text-anchor', 'left')
+        .text('Resurgence of meeting through personal-preference activities');
+      
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a10_1_2')
+        .style('opacity', 0)
+        .attr('x', xScale(0.12))
+        .attr('y', yScale(18) + yScale.bandwidth() / 2)
+        .attr('text-anchor', 'left')
+        .text('Online has taken over as far and away the most popular meet-up.');
+      d3.select('svg').append('text')
+        .attr('x', (svg_width + margin.left + margin.right) / 2 )
+        .attr('y', margin.top / 2)
+        .attr('text-anchor', 'middle')
+        .style('font', '20px "Lucida Console"')
+        .text('How Couples Met By Decade');
+      
+    }
+    
+    function update_data(year) {
+      var svg = d3.select('body').transition().duration(1000);
+      if (year == 1960) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1960[i]); });
+        d3.select('#a60_1_1').style('opacity', 1);
+        d3.select('#a60_1_2').style('opacity', 1);
+        d3.select('#a70_1_1').style('opacity', 0);
+        d3.select('#a70_1_2').style('opacity', 0);
+        d3.select('#a80_1_1').style('opacity', 0);
+        d3.select('#a80_1_2').style('opacity', 0);
+        d3.select('#a90_1_1').style('opacity', 0);
+        d3.select('#a90_1_2').style('opacity', 0);
+        d3.select('#a00_1_1').style('opacity', 0);
+        d3.select('#a10_1_2').style('opacity', 0);
+        d3.selectAll('g').filter('.bar').data(data1960);
+      }
+      
+      else if (year == 1970) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1970[i]); });
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
+        d3.select('#a70_1_1').style('opacity', 1);
+        d3.select('#a70_1_2').style('opacity', 1);
+        d3.select('#a80_1_1').style('opacity', 0);
+        d3.select('#a80_1_2').style('opacity', 0);
+        d3.select('#a90_1_1').style('opacity', 0);
+        d3.select('#a90_1_2').style('opacity', 0);
+        d3.select('#a00_1_1').style('opacity', 0);
+        d3.select('#a10_1_2').style('opacity', 0);
+        d3.selectAll('.bar').filter('.bar').data(data1970);
+      }
+      
+      else if (year == 1980) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1980[i]); });
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
+        d3.select('#a70_1_1').style('opacity', 0);
+        d3.select('#a70_1_2').style('opacity', 0);
+        d3.select('#a80_1_1').style('opacity', 1);
+        d3.select('#a80_1_2').style('opacity', 1);
+        d3.select('#a90_1_1').style('opacity', 0);
+        d3.select('#a90_1_2').style('opacity', 0);
+        d3.select('#a00_1_1').style('opacity', 0);
+        d3.select('#a10_1_2').style('opacity', 0);
+        d3.selectAll('.bar').filter('.bar').data(data1980);
+      }
+      
+      else if (year == 1990) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data1990[i]); });
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
+        d3.select('#a70_1_1').style('opacity', 0);
+        d3.select('#a70_1_2').style('opacity', 0);
+        d3.select('#a80_1_1').style('opacity', 0);
+        d3.select('#a80_1_2').style('opacity', 0);
+        d3.select('#a90_1_1').style('opacity', 1);
+        d3.select('#a90_1_2').style('opacity', 1);
+        d3.select('#a00_1_1').style('opacity', 0);
+        d3.select('#a10_1_2').style('opacity', 0);
+        d3.selectAll('.bar').filter('.bar').data(data1990);
+      }
+      
+      else if (year == 2000) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data2000[i]); });
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
+        d3.select('#a70_1_1').style('opacity', 0);
+        d3.select('#a70_1_2').style('opacity', 0);
+        d3.select('#a80_1_1').style('opacity', 0);
+        d3.select('#a80_1_2').style('opacity', 0);
+        d3.select('#a90_1_1').style('opacity', 0);
+        d3.select('#a90_1_2').style('opacity', 0);
+        d3.select('#a00_1_1').style('opacity', 1);
+        d3.select('#a10_1_2').style('opacity', 0);
+        d3.selectAll('.bar').filter('.bar').data(data2000);
+      }
+      
+      else if (year == 2010) {
+        svg.selectAll('rect')
+          .attr('width', function(d,i) { return xScale(data2010[i]); });
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
+        d3.select('#a70_1_1').style('opacity', 0);
+        d3.select('#a70_1_2').style('opacity', 0);
+        d3.select('#a80_1_1').style('opacity', 0);
+        d3.select('#a80_1_2').style('opacity', 0);
+        d3.select('#a90_1_1').style('opacity', 0);
+        d3.select('#a90_1_2').style('opacity', 0);
+        d3.select('#a00_1_1').style('opacity', 0);
+        d3.select('#a10_1_2').style('opacity', 1);
+        d3.selectAll('.bar').filter('.bar').data(data2010);
+      }
+      
+    }
+    
+  </script>
+  
+</body>
+
+</html>
