@@ -43,7 +43,7 @@ body {
   
   <script>
     async function main() {
-      var data = await d3.csv('/data/overview_data.csv');
+      var data = await d3.csv('/data/timeline_data.csv');
       svg_width = 800;
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
@@ -52,6 +52,7 @@ body {
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
           .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+      
       decades = [];
       for (var i = 0; i < data.length; i++) {
         decades.push(data[i]['Decade']);
@@ -112,7 +113,6 @@ body {
         .ticks(decades.length)
         .tickValues(decades)
 
-      console.log(decades);
       var bar = svg.selectAll('g').data(width_data)
         .enter()
         .append('g')
