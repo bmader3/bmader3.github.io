@@ -86,6 +86,14 @@ body {
       data2010.push(parseFloat(data[5]['Time To Move In']));
       data2010.push(parseFloat(data[5]['Time To Marriage']));
       
+      width_data = [];
+      width_data.push(data1960[2]);
+      width_data.push(data1970[2]);
+      width_data.push(data1980[2]);
+      width_data.push(data1990[2]);
+      width_data.push(data2000[2]);
+      width_data.push(data2010[2]);
+      
       xScale = d3.scaleLinear()
         .domain([0, 8])
         .range([0, svg_width]);
@@ -98,22 +106,22 @@ body {
       var xaxis = d3.axisBottom().scale(xScale)
         .ticks(12)
         .tickValues([0,1,2,3,4,5,6,7,8])
-        .tickFormat(d => d + ' years');
+        .tickFormat(d => d + ' years')
+        .orient('top');
       
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(decades.length)
         .tickValues(decades)
 
-      var line1960 = svg.selectAll('g').append('g');
-      line1960.selectAll('path').data(data1960)
+      var bar = svg.selectAll('g').data(width_data)
         .enter()
-        .append('path')
-        .attr('class', 'line')
-        .attr('stroke', 'silver');
+        .append('g')
+        .attr('class', 'bar')
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(i) + ')'; });
       
-//       bar.append('rect')
-//         .attr('width', function(d) { return xScale(d); })
-//         .attr('height', yScale.bandwidth());
+      bar.append('rect')
+        .attr('width', function(d) { return xScale(d); })
+        .attr('height', 5);
       
 //       bar.append('text')
 //         .attr('text-anchor', 'left')
