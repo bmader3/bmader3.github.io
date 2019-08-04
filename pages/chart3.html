@@ -266,7 +266,7 @@
         .attr('class', 'annotation')
         .attr('id', 'annotation1')
         .attr('x', (xScale(movein_data[0]) + xScale(width_data[2])) / 2)
-        .attr('y', yScale(decades[0]) + yScale/bandwidth() / 2)
+        .attr('y', yScale(decades[0]) + yScale.bandwidth() / 2)
 //         .attr('text-anchor', 'middle')
 //         .style('font', '10px "Lucida Console"')
         .innerHTML='Moving in was usually concurrent with marriage.';
