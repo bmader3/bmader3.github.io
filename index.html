@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html>
+  
+<style>
+  .slide-panel button {
+    background-color: Gainsboro;
+    border: 3px solid DimGray;
+    font: 16px "Lucida Console";
+    padding: 10px 24px;
+    float:left;
+    width: 20%;
+  }
+  .slide-panel button:hover {
+    background-color: SlateGray;
+  }
+</style>
+  
 <body>
   <h1>This is my project title, hope it shows up!</h1>
   <p>This is my attempt at creating a body webpage.</p>
@@ -8,6 +23,19 @@
   <div><a href='/pages/chart2.html'>Click here to go to chart2.</a></div>
   <div><a href='/pages/chart3.html'>Click here to go to chart3.</a></div>
   <div><a href='/pages/chart4.html'>Click here to go to chart4.</a></div>
+  
+  <div> </div>
+  <div style='width: 860; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align:center;'>
+    Use the panel below to navigate between pages in the slideshow.</div>
+  <div> </div>
+  
+  <div class='slide-panel' style='width:860; margin-bottom: 50px;' id='slidepanel'>
+    <button onclick="location.href = 'https://bmader3.github.io/index.html';">Start</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart1.html';">Overview</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart2.html';">Slide 1</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart3.html';">Slide 2</button>
+    <button onclick="location.href = 'https://bmader3.github.io/pages/chart4.html';">Slide 3</button>
+  </div>
 </body>
   
 </html>
