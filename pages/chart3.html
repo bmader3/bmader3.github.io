@@ -116,7 +116,10 @@ body {
         .enter()
         .append('g')
         .attr('class', 'bar')
-        .attr('transform', function(d,i) { return 'translate(0,' + yScale(decades[i]) + ')'; });
+        .attr('transform', function(d,i) { 
+          console.log(decades[i]);
+          console.log(yScale(decades[i]));
+          return 'translate(0,' + yScale(decades[i]) + ')'; });
       
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
