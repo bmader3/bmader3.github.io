@@ -112,6 +112,7 @@ body {
         .ticks(decades.length)
         .tickValues(decades)
 
+      console.log(decades);
       var bar = svg.selectAll('g').data(width_data)
         .enter()
         .append('g')
