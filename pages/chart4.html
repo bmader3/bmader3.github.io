@@ -148,7 +148,7 @@
       svg.append('text')
         .attr('class', 'annotation')
         .attr('id', 'a60_1_1')
-        .style('opacity', 0)
+        .style('opacity', 4)
         .attr('x', xScale(.13))
         .attr('y', yScale(4) + yScale.bandwidth() / 2 - 6)
         .attr('text-anchor', 'left')
@@ -167,7 +167,7 @@
         .attr('id', 'a80_1_1')
         .style('opacity', 0)
         .attr('x', xScale(0.1))
-        .attr('y', yScale(4) - 6)
+        .attr('y', yScale(0) - 6)
         .attr('text-anchor', 'left')
         .text('Still low rates of dissatisfaction--');
       svg.append('text')
@@ -175,7 +175,7 @@
         .attr('id', 'a80_1_2')
         .style('opacity', 0)
         .attr('x', xScale(0.1))
-        .attr('y', yScale(4) + yScale.bandwidth() + 6)
+        .attr('y', yScale(0) + 6)
         .attr('text-anchor', 'left')
         .text('These are stable for most decades.');
       
@@ -194,17 +194,25 @@
         .attr('id', 'a10_1_1')
         .style('opacity', 0)
         .attr('x', xScale(.53))
-        .attr('y', yScale(0) + yScale.bandwidth() / 2 - 6)
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 - 9)
         .attr('text-anchor', 'left')
         .text('Did you notice that the % of excellent ratings');
       svg.append('text')
         .attr('class', 'annotation')
         .attr('id', 'a10_1_2')
         .style('opacity', 0)
-        .attr('x', xScale(0.53))
-        .attr('y', yScale(0) + yScale.bandwidth() / 2)
+        .attr('x', xScale(.53))
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 - 3)
         .attr('text-anchor', 'left')
-        .text('monotonically decreased every year?');
+        .text('of excellent ratings monotonically decreased');
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a10_1_3')
+        .style('opacity', 0)
+        .attr('x', xScale(0.53))
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 + 3)
+        .attr('text-anchor', 'left')
+        .text('every year?');
       
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 + 6)
@@ -227,6 +235,7 @@
         d3.select('#a90_1_1').style('opacity', 0);
         d3.select('#a10_1_1').style('opacity', 0);
         d3.select('#a10_1_2').style('opacity', 0);
+        d3.select('#a10_1_3').style('opacity', 0);
         d3.selectAll('g').filter('.bar').data(data1960);
       }
       
@@ -240,6 +249,7 @@
         d3.select('#a90_1_1').style('opacity', 0);
         d3.select('#a10_1_1').style('opacity', 0);
         d3.select('#a10_1_2').style('opacity', 0);
+        d3.select('#a10_1_3').style('opacity', 0);
         d3.selectAll('.bar').filter('.bar').data(data1970);
       }
       
@@ -253,6 +263,7 @@
         d3.select('#a90_1_1').style('opacity', 0);
         d3.select('#a10_1_1').style('opacity', 0);
         d3.select('#a10_1_2').style('opacity', 0);
+        d3.select('#a10_1_3').style('opacity', 0);
         d3.selectAll('.bar').filter('.bar').data(data1980);
       }
       
@@ -266,6 +277,7 @@
         d3.select('#a90_1_1').style('opacity', 1);
         d3.select('#a10_1_1').style('opacity', 0);
         d3.select('#a10_1_2').style('opacity', 0);
+        d3.select('#a10_1_3').style('opacity', 0);
         d3.selectAll('.bar').filter('.bar').data(data1990);
       }
       
@@ -279,6 +291,7 @@
         d3.select('#a90_1_1').style('opacity', 0);
         d3.select('#a10_1_1').style('opacity', 0);
         d3.select('#a10_1_2').style('opacity', 0);
+        d3.select('#a10_1_3').style('opacity', 0);
         d3.selectAll('.bar').filter('.bar').data(data2000);
       }
       
@@ -292,6 +305,7 @@
         d3.select('#a90_1_1').style('opacity', 0);
         d3.select('#a10_1_1').style('opacity', 1);
         d3.select('#a10_1_2').style('opacity', 1);
+        d3.select('#a10_1_3').style('opacity', 1);
         d3.selectAll('.bar').filter('.bar').data(data2010);
       }
       
