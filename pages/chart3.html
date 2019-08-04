@@ -165,13 +165,6 @@
         .attr('width', function(d) { return xScale(d); })
         .attr('height', 4);
       
-//       bar.append('text')
-//         .attr('text-anchor', 'left')
-//         .attr('x', 5)
-//         .attr('y', yScale.bandwidth() / 2)
-//         .attr('dy', '.35em')
-//         .text(function(d,i) { return ways[i]; });
-      
       svg.append('g')
         .attr('class', 'romance_circle')
         .selectAll('circle').data(romance_data)
@@ -181,7 +174,7 @@
         .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
         .attr('r', 8)
         .on('mouseover', function(d, i) {
-            tooltip.style('opacity', 0.9);
+            tooltip.style('opacity', 1);
             document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple entered a relationship " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
               .style('top', (d3.event.pageY) - 40 + 'px');})
@@ -198,7 +191,7 @@
         .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
         .attr('r', 8)
         .on('mouseover', function(d, i) {
-            tooltip.style('opacity', 0.9);
+            tooltip.style('opacity', 1);
             document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple moved in together " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
               .style('top', (d3.event.pageY) - 40 + 'px');})
@@ -215,7 +208,7 @@
         .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
         .attr('r', 8)
         .on('mouseover', function(d, i) {
-            tooltip.style('opacity', 0.9);
+            tooltip.style('opacity', 1);
             document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple got married " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
               .style('top', (d3.event.pageY) - 40 + 'px');})
