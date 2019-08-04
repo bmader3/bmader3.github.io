@@ -140,7 +140,7 @@ body {
       svg.append('g')
         .call(yaxis);
       d3.select('svg').append('g')
-        .attr('transform', 'translate(0,' + (svg_height + margin.top) + ')')
+        .attr('transform', 'translate(' + margin.left + ',' + (svg_height + margin.top) + ')')
         .call(xaxis);
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 )
