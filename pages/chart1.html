@@ -141,12 +141,20 @@
       
       svg.append('text')
         .attr('class', 'annotation')
-        .attr('id', 'a60_1')
+        .attr('id', 'a60_1_1')
         .style('opacity', 0)
         .attr('x', xScale(data1960[6]) + 10)
         .attr('y', yScale(6) + yScale.bandwidth() / 2)
         .attr('text-anchor', 'left')
-        .text('Less importance on college degree (esp. for women), so lots of high school sweethearts.');
+        .text('Less importance on college degree (esp. for women).');
+      svg.append('text')
+        .attr('class', 'annotation')
+        .attr('id', 'a60_1_2')
+        .style('opacity', 0)
+        .attr('x', xScale(data1960[6]) + 10)
+        .attr('y', yScale(6) + yScale.bandwidth() / 2 - 11)
+        .attr('text-anchor', 'left')
+        .text('Lots of high school sweethearts.');
 
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 )
@@ -161,45 +169,51 @@
       var svg = d3.select('body').transition().duration(1000);
 
       if (year == 1960) {
-        d3.select('#a60_1').style('opacity', 1);
+        d3.select('#a60_1_1').style('opacity', 1);
+        d3.select('#a60_1_2').style('opacity', 1);
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1960[i]); });
         d3.selectAll('g').filter('.bar').data(data1960);
       }
       
       else if (year == 1970) {
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1970[i]); });
         d3.selectAll('.bar').filter('.bar').data(data1970);
-        document.getElementById('a60_1').style('opacity', 0);
       }
       
       else if (year == 1980) {
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1980[i]); });
         d3.selectAll('.bar').filter('.bar').data(data1980);
-        document.getElementById('a60_1').style('opacity', 0);
       }
       
       else if (year == 1990) {
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data1990[i]); });
         d3.selectAll('.bar').filter('.bar').data(data1990);
-        document.getElementById('a60_1').style('opacity', 0);
       }
       
       else if (year == 2000) {
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data2000[i]); });
         d3.selectAll('.bar').filter('.bar').data(data2000);
-        document.getElementById('a60_1').style('opacity', 0);
       }
       
       else if (year == 2010) {
+        d3.select('#a60_1_1').style('opacity', 0);
+        d3.select('#a60_1_2').style('opacity', 0);
         svg.selectAll('rect')
           .attr('width', function(d,i) { return xScale(data2010[i]); });
         d3.selectAll('.bar').filter('.bar').data(data2010);
-        document.getElementById('a60_1').style('opacity', 0);
       }
       
     }
