@@ -194,25 +194,25 @@
         .attr('id', 'a10_1_1')
         .style('opacity', 0)
         .attr('x', xScale(.53))
-        .attr('y', yScale(4) + yScale.bandwidth() / 2 - 9)
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 - 12)
         .attr('text-anchor', 'left')
-        .text('Did you notice that the % of excellent ratings');
+        .text('Did you notice that the % of');
       svg.append('text')
         .attr('class', 'annotation')
         .attr('id', 'a10_1_2')
         .style('opacity', 0)
         .attr('x', xScale(.53))
-        .attr('y', yScale(4) + yScale.bandwidth() / 2 - 3)
+        .attr('y', yScale(4) + yScale.bandwidth() / 2)
         .attr('text-anchor', 'left')
-        .text('of excellent ratings monotonically decreased');
+        .text('excellent ratings monotonically');
       svg.append('text')
         .attr('class', 'annotation')
         .attr('id', 'a10_1_3')
         .style('opacity', 0)
         .attr('x', xScale(0.53))
-        .attr('y', yScale(4) + yScale.bandwidth() / 2 + 3)
+        .attr('y', yScale(4) + yScale.bandwidth() / 2 + 12)
         .attr('text-anchor', 'left')
-        .text('every year?');
+        .text('decreased every year?');
       
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 + 6)
