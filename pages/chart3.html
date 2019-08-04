@@ -19,15 +19,12 @@
   }
   .romance_circle circle {
     fill: crimson;
-    radius: 8;
   }
   .movein_circle circle {
     fill: FireBrick;
-    radius: 8;
   }
   .marriage_circle circle {
     fill: Maroon;
-    radius: 8;
   }
 /* .button-group button {
   background-color: DarkGray;
@@ -107,6 +104,14 @@
       romance_data.push(data2000[0]);
       romance_data.push(data2010[0]);
       
+      movein_data = [];
+      movein_data.push(data1960[1]);
+      movein_data.push(data1970[2]);
+      movein_data.push(data1980[3]);
+      movein_data.push(data1990[4]);
+      movein_data.push(data2000[5]);
+      movein_data.push(data2010[6]);
+      
       xScale = d3.scaleLinear()
         .domain([0, 8])
         .range([0, svg_width]);
@@ -148,7 +153,26 @@
         .enter()
         .append('circle')
         .attr('cx', function(d) { return xScale(d); })
-        .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; });
+        .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
+        .attr('r', 8);
+      
+      svg.append('g')
+        .attr('class', 'movein_circle')
+        .selectAll('circle').data(movein_data)
+        .enter()
+        .append('circle')
+        .attr('cx', function(d) { return xScale(d); })
+        .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
+        .attr('r', 8);
+      
+      svg.append('g')
+        .attr('class', 'marriage_circle')
+        .selectAll('circle').data(width_data)
+        .enter()
+        .append('circle')
+        .attr('cx', function(d) { return xScale(d); })
+        .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
+        .attr('r', 8);
       
       svg.append('g')
         .call(yaxis);
