@@ -3,7 +3,7 @@
 
 <style>
   body {
-    font: 14px sans-serif;
+    font: 14px "Lucida Console";
   }
   .bar {
     fill: silver;
@@ -252,6 +252,13 @@
           .on('mouseout', function(d) {
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
+      
+      svg.append('text')
+        .attr('x', (xScale(romance_data[0]) + xScale(movein_data[0])) / 2)
+        .attry('y', yScale(decades[0]))
+        .attr('text-anchor', 'middle')
+        .style('font', '10px "Lucida Console"')
+        .text('Moving in was usually concurrent with marriage.');
       
       svg.append('g')
         .call(yaxis);
