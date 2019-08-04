@@ -135,7 +135,7 @@
       
       var labelScale = d3.scaleOrdinal()
         .domain(['Romance', 'Move-In', 'Marry'])
-        .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(marriage_data[2])]);
+        .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(width_data[2])]);
       
       var xaxis = d3.axisBottom().scale(xScale)
         .ticks(12)
