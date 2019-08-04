@@ -165,6 +165,42 @@
         .attr('width', function(d) { return xScale(d); })
         .attr('height', 4);
       
+      svg.append('path')
+        .attr('d', 'M' + xScale(romance_data[0]) + ' ' + (yScale(decades[0]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(romance_data[1]) + ' ' + (yScale(decades[1]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(romance_data[2]) + ' ' + (yScale(decades[2]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(romance_data[3]) + ' ' + (yScale(decades[3]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(romance_data[4]) + ' ' + (yScale(decades[4]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(romance_data[5]) + ' ' + (yScale(decades[5]) + yScale.bandwidth() / 2))
+        .style('stroke-width', 2)
+        .style('fill', 'none')
+        .style('stroke', 'DimGray')
+        .style('stroke-dasharray', '2,2');
+      
+      svg.append('path')
+        .attr('d', 'M' + xScale(movein_data[0]) + ' ' + (yScale(decades[0]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(movein_data[1]) + ' ' + (yScale(decades[1]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(movein_data[2]) + ' ' + (yScale(decades[2]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(movein_data[3]) + ' ' + (yScale(decades[3]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(movein_data[4]) + ' ' + (yScale(decades[4]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(movein_data[5]) + ' ' + (yScale(decades[5]) + yScale.bandwidth() / 2))
+        .style('stroke-width', 2)
+        .style('fill', 'none')
+        .style('stroke', 'DimGray')
+        .style('stroke-dasharray', '2,2');
+      
+      svg.append('path')
+        .attr('d', 'M' + xScale(width_data[0]) + ' ' + (yScale(decades[0]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(width_data[1]) + ' ' + (yScale(decades[1]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(width_data[2]) + ' ' + (yScale(decades[2]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(width_data[3]) + ' ' + (yScale(decades[3]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(width_data[4]) + ' ' + (yScale(decades[4]) + yScale.bandwidth() / 2) + 
+              ' L' + xScale(width_data[5]) + ' ' + (yScale(decades[5]) + yScale.bandwidth() / 2))
+        .style('stroke-width', 2)
+        .style('fill', 'none')
+        .style('stroke', 'DimGray')
+        .style('stroke-dasharray', '2,2');
+      
       svg.append('g')
         .attr('class', 'romance_circle')
         .selectAll('circle').data(romance_data)
@@ -215,18 +251,6 @@
           .on('mouseout', function(d) {
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
-      
-      svg.append('path')
-        .attr('d', 'M' + xScale(romance_data[0]) + ' ' + (yScale(decades[0]) + yScale.bandwidth() / 2) + 
-              ' L' + xScale(romance_data[1]) + ' ' + (yScale(decades[1]) + yScale.bandwidth() / 2) + 
-              ' L' + xScale(romance_data[2]) + ' ' + (yScale(decades[2]) + yScale.bandwidth() / 2) + 
-              ' L' + xScale(romance_data[3]) + ' ' + (yScale(decades[3]) + yScale.bandwidth() / 2) + 
-              ' L' + xScale(romance_data[4]) + ' ' + (yScale(decades[4]) + yScale.bandwidth() / 2) + 
-              ' L' + xScale(romance_data[5]) + ' ' + (yScale(decades[5]) + yScale.bandwidth() / 2))
-        .style('stroke-width', 2)
-        .style('fill', 'none')
-        .style('stroke', 'DimGray')
-        .style('stroke-dasharray', '(2,2)');
       
       svg.append('g')
         .call(yaxis);
