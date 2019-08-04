@@ -43,9 +43,51 @@
   .slide-panel button:hover {
     background-color: SlateGray;
   }
+  .title {
+    font-family: "Lucida Console";
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    font-family: "Lucida Console";
+    font-size: 26px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .author {
+    font-family: "Lucida Console";
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .body-text {
+    font-family: "Lucida Console";
+    font-size: 16px;
+    font-weight: normal;
+  }
 </style>
 
 <body onload='main()'>
+  
+  <h1 class='title'>Overview</h1>
+  <h2 class='subtitle'>How Do Couples Meet Over Time?</h2>
+  
+  <div class='body-text'>
+    This overview slide allows you to explore the various ways that couples have met their partners over
+    the past few decades. We've outlined the primary 19 ways that couples have met (as coded by the Stanford
+    authors in their dataset), and the percentage of couples in a given decade that met each way will be
+    shown as a proportional bar extending from the graph's axis. Simply click on the decade control buttons
+    below the graph to explore how these proportions have changed over time. When you're ready, advance to
+    the next slide to have the change to drill down into some interactive examination of how different 
+    demographic groups met their partners.
+  </div>
+  
+  <div class='container' id='container' style='text-align:center;'></div>
+  
   <div class='button-group' style='width:860' id='buttons'>
     <button onclick='update_data(1960)'>1960</button>
     <button onclick='update_data(1970)'>1970</button>
@@ -78,7 +120,7 @@
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
 
-      var svg = d3.select('body').insert('svg', '#buttons')
+      var svg = d3.select('#container').insert('svg', '#buttons')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
