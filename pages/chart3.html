@@ -111,20 +111,17 @@ body {
       
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(decades.length)
-        .tickValues(decades)
+        .tickValues(decades);
 
       var bar = svg.selectAll('g').data(width_data)
         .enter()
         .append('g')
         .attr('class', 'bar')
-        .attr('transform', function(d,i) { 
-          console.log(decades[i]);
-          console.log(yScale(decades[i]));
-          return 'translate(0,' + yScale(decades[i]) + ')'; });
+        .attr('transform', function(d,i) { return 'translate(0,' + yScale(decades[i])/2 - 2 + ')'; });
       
       bar.append('rect')
         .attr('width', function(d) { return xScale(d); })
-        .attr('height', 5);
+        .attr('height', 4);
       
 //       bar.append('text')
 //         .attr('text-anchor', 'left')
