@@ -131,9 +131,16 @@ body {
 //         .text(function(d,i) { return ways[i]; });
       
       svg.append('g')
+        .append('circle')
+        .attr('cx', xScale(data1960[0]))
+        .attr('cy', yScale(decades[0]) + yScale.bandwidth() / 2)
+        .attr('r', 8)
+        .style('fill', 'lightsteelblue');
+      
+      svg.append('g')
         .call(yaxis);
       svg.append('g')
-        .attr('transform', 'translate(0,' + (svg_height + margin.top) + ')');
+        .attr('transform', 'translate(0,' + (svg_height + margin.top) + ')')
         .call(xaxis);
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 )
