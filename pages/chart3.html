@@ -29,10 +29,10 @@
   .tooltip {	
     position: absolute;
     text-align: center;
-    width: 90px;
+    width: 100px;
     height: 40px;
-    padding: 4px;
-    font: 12px "Lucida Console";
+    padding: 2px;
+    font: 10px "Lucida Console";
     background-color: snow;
     border: 2px DimGray;
     color: black;
@@ -174,9 +174,9 @@
         .attr('r', 8)
         .on('mouseover', function(d, i) {
             tooltip.style('opacity', 0.9);
-            document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple entered a relationship " + d + " years after meeting.";
+            document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple entered a relationship " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
-              .style('top', (d3.event.pageY) - 50 + 'px');})
+              .style('top', (d3.event.pageY) - 40 + 'px');})
           .on('mouseout', function(d) {
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
@@ -188,7 +188,15 @@
         .append('circle')
         .attr('cx', function(d) { return xScale(d); })
         .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
-        .attr('r', 8);
+        .attr('r', 8)
+        .on('mouseover', function(d, i) {
+            tooltip.style('opacity', 0.9);
+            document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple moved in together " + d.toFixed(3) + " years after meeting.";
+            tooltip.style('left', (d3.event.pageX) + 'px')
+              .style('top', (d3.event.pageY) - 40 + 'px');})
+          .on('mouseout', function(d) {
+            tooltip.style('opacity', 0);
+            document.getElementById('tooltip').innerHTML="";});
       
       svg.append('g')
         .attr('class', 'marriage_circle')
@@ -197,7 +205,15 @@
         .append('circle')
         .attr('cx', function(d) { return xScale(d); })
         .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
-        .attr('r', 8);
+        .attr('r', 8)
+        .on('mouseover', function(d, i) {
+            tooltip.style('opacity', 0.9);
+            document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple got married " + d.toFixed(3) + " years after meeting.";
+            tooltip.style('left', (d3.event.pageX) + 'px')
+              .style('top', (d3.event.pageY) - 40 + 'px');})
+          .on('mouseout', function(d) {
+            tooltip.style('opacity', 0);
+            document.getElementById('tooltip').innerHTML="";});
       
       svg.append('g')
         .call(yaxis);
@@ -218,38 +234,3 @@
 </body>
 
 </html>
-
-
-
-
-<!-- .tooltip {	
-  position: absolute;
-  text-align: center;
-  width: 90px;
-  height: 40px;
-  padding: 4px;
-  font: 12px "Lucida Console";
-  background-color: snow;
-  border: 2px DimGray;
-  color: black;
-  pointer-events: none;
-}
-
-      
-      var tooltip = d3.select('body').append('div')
-        .attr('class', 'tooltip')
-        .attr('id', 'tooltip')
-        .style('opacity', 0);
-
-bar.append('rect')
-        .attr('width', function(d) { return xScale(d); })
-        .attr('height', yScale.bandwidth())
-        .on('mouseover', function(d) {
-          tooltip.style('opacity', 0.9);
-          document.getElementById('tooltip').innerHTML = "" + (100*d) + "% of couples met this way";
-          tooltip.style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) - 50 + 'px');})
-        .on('mouseout', function(d) {
-          tooltip.style('opacity', 0);
-          document.getElementById('tooltip').innerHTML="";});
- -->
