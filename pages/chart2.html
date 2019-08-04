@@ -46,6 +46,20 @@
 
 <body onload='main()'>
   
+  <h1 class='title' style='width:860;'>Slide 1: Interactive Drill-Down</h1>
+  <h2 class='subtitle' style='width:860;'>How Do Certain Types Of People Meet Their Partner?</h2>
+  
+  <p class='body-text' style='margin-left: 50px; margin-right: 50px;'>
+    In this slide, you can see how various groups of people met their partners in each decade from 1960 until the 2010s.
+    Use the selection menus in the option bar below the graph to select the demographics you're curious about, then
+    press the visualize button. The graph will dynamically update to show you bars representing the proportion of people
+    in your chosen time range with the demographics you selected who met their partner in each of the ways mentioned in 
+    the overview. This is your change to really drill down into the data. Can you find any trends you find interesting?
+  </p>
+  
+  <div class='container' id='container' style='text-align: center;'></div>
+  
+  <div class='container' style='width: 860px; text-align:center; margin: auto;'>
   <div class='selector' style='width:840' id='selector'>
     See how a <select class='menu' id='gender_opt'>
       <option value='Male'>Male</option>
@@ -65,18 +79,21 @@
     </select> was likely to meet their partner.  
     <button class='vis' onclick='update_data()'>Visualize</button>
   </div>
+  </div>
   
+  <div class='container' style='text-align: center; width: 860px; margin: auto;'>
   <div> </div>
-  <div style='width: 860; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align:center;'>
+  <div style='width: 860px; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align:center;'>
     Use the panel below to navigate between pages in the slideshow.</div>
   <div> </div>
   
-  <div class='slide-panel' style='width:860; margin-bottom: 50px;' id='slidepanel'>
+  <div class='slide-panel' style='width:860px; margin-bottom: 50px; text-align: center;' id='slidepanel'>
     <button onclick="location.href = 'https://bmader3.github.io/index.html';">Start</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart1.html';">Overview</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart2.html';">Slide 1</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart3.html';">Slide 2</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart4.html';">Slide 3</button>
+  </div>
   </div>
   
   <p style='opacity: 0;'>spacing</p>
@@ -89,7 +106,7 @@
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
 
-      var svg = d3.select('body').insert('svg', '#selector')
+      var svg = d3.select('#container').append('svg')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
