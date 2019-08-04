@@ -32,6 +32,14 @@
   .annotation {
     font: 12px "Lucida Console";
   }
+  .slide-panel slide {
+    background-color: Gainsboro;
+    border: 3px solid DimGray;
+    font: 16px "Lucida Console";
+    padding: 10px 24px;
+    float:left;
+    width: 20%;
+  }
 </style>
 
 <body onload='main()'>
@@ -42,6 +50,14 @@
     <button onclick='update_data(1990)'>1990</button>
     <button onclick='update_data(2000)'>2000</button>
     <button onclick='update_data(2010)'>2010</button>
+  </div>
+  
+  <div class='slide-panel' style='width:860' id='slidepanel'>
+    <div class='slide'><a href='/pages/index.html'>Start</a></div>
+    <div class='slide'><a href='/pages/chart1.html'>Overview</a></div>
+    <div class='slide'><a href='/pages/chart2.html'>Slide 1</a></div>
+    <div class='slide'><a href='/pages/chart3.html'>Slide 2</a></div>
+    <div class='slide'><a href='/pages/chart3.html'>Slide 3</a></div>
   </div>
   
   <script>
