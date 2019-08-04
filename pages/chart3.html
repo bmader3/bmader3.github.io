@@ -255,10 +255,17 @@
       
       svg.append('text')
         .attr('x', (xScale(romance_data[0]) + xScale(movein_data[0])) / 2)
-        .attry('y', yScale(decades[0]))
+        .attr('y', yScale(decades[0]))
         .attr('text-anchor', 'middle')
         .style('font', '10px "Lucida Console"')
         .text('Moving in was usually concurrent with marriage.');
+      
+      svg.append('text')
+        .attr('x', (xScale(movein_data[4]) + xScale(width_data[4])) / 2)
+        .attr('y', yScale(decades[4]) + yScale.bandwidth() / 2)
+        .attr('text-anchor', 'middle')
+        .style('font', '10px "Lucida Console"')
+        .text('Now people wait years before taking any major action.');
       
       svg.append('g')
         .call(yaxis);
