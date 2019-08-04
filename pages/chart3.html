@@ -133,9 +133,9 @@
         .range([0, svg_height])
         .paddingInner(0.05);
       
-      var labelScale = d3.scaleOrdinal()
-        .domain(['Romance', 'Move-In', 'Marry', 'End'])
-        .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(width_data[2]), xScale(8)]);
+//       var labelScale = d3.scaleOrdinal()
+//         .domain(['Romance', 'Move-In', 'Marry', 'End'])
+//         .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(width_data[2]), xScale(8)]);
       
       var xaxis = d3.axisBottom().scale(xScale)
         .ticks(12)
@@ -221,9 +221,29 @@
       d3.select('svg').append('g')
         .attr('transform', 'translate(' + margin.left + ',' + (svg_height + margin.top) + ')')
         .call(xaxis);
-      d3.select('svg').append('g')
-        .attr('transform', 'translate(0,' + margin.top + ')')
-        .call(labelaxis);
+//       d3.select('svg').append('g')
+//         .attr('transform', 'translate(0,' + margin.top + ')')
+//         .call(labelaxis);
+      
+      d3.select('svg').append('text')
+        .attr('x', margin.left + xScale(romance_data[0]))
+        .attr('y', margin.top)
+        .attr('text-anchor', 'middle')
+        .style('font', '14px "Lucida Console"')
+        .text('Romance');
+      d3.select('svg').append('text')
+        .attr('x', margin.left + xScale(movein_data[0]))
+        .attr('y', margin.top)
+        .attr('text-anchor', 'middle')
+        .style('font', '14px "Lucida Console"')
+        .text('Move In');
+      d3.select('svg').append('text')
+        .attr('x', margin.left + xScale(width_data[2]))
+        .attr('y', margin.top)
+        .attr('text-anchor', 'middle')
+        .style('font', '14px "Lucida Console"')
+        .text('Marry'); 
+      
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 )
         .attr('y', margin.top / 2)
