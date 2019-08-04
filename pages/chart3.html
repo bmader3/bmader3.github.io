@@ -26,6 +26,18 @@
   .marriage_circle circle {
     fill: Maroon;
   }
+  .tooltip {	
+    position: absolute;
+    text-align: center;
+    width: 90px;
+    height: 40px;
+    padding: 4px;
+    font: 12px "Lucida Console";
+    background-color: snow;
+    border: 2px DimGray;
+    color: black;
+    pointer-events: none;
+  }
 /* .button-group button {
   background-color: DarkGray;
   border: 3px solid DimGray;
@@ -106,11 +118,11 @@
       
       movein_data = [];
       movein_data.push(data1960[1]);
-      movein_data.push(data1970[2]);
-      movein_data.push(data1980[3]);
-      movein_data.push(data1990[4]);
-      movein_data.push(data2000[5]);
-      movein_data.push(data2010[6]);
+      movein_data.push(data1970[1]);
+      movein_data.push(data1980[1]);
+      movein_data.push(data1990[1]);
+      movein_data.push(data2000[1]);
+      movein_data.push(data2010[1]);
       
       xScale = d3.scaleLinear()
         .domain([0, 8])
@@ -129,6 +141,11 @@
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(decades.length)
         .tickValues(decades);
+      
+      var tooltip = d3.select('body').append('div')
+        .attr('class', 'tooltip')
+        .attr('id', 'tooltip')
+        .style('opacity', 0);
 
       var bar = svg.selectAll('g').data(width_data)
         .enter()
@@ -154,7 +171,15 @@
         .append('circle')
         .attr('cx', function(d) { return xScale(d); })
         .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; })
-        .attr('r', 8);
+        .attr('r', 8)
+        .on('mouseover', function(d, i) {
+            tooltip.style('opacity', 0.9);
+            document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple entered a relationship " + d + " years after meeting.";
+            tooltip.style('left', (d3.event.pageX) + 'px')
+              .style('top', (d3.event.pageY) - 50 + 'px');})
+          .on('mouseout', function(d) {
+            tooltip.style('opacity', 0);
+            document.getElementById('tooltip').innerHTML="";});
       
       svg.append('g')
         .attr('class', 'movein_circle')
