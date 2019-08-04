@@ -133,6 +133,10 @@
         .range([0, svg_height])
         .paddingInner(0.05);
       
+      var labelScale = d3.scaleOrdinal()
+        .domain(['Romance', 'Move-In', 'Marry'])
+        .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(marriage_data[2])]);
+      
       var xaxis = d3.axisBottom().scale(xScale)
         .ticks(12)
         .tickValues([0,1,2,3,4,5,6,7,8])
@@ -141,6 +145,10 @@
       var yaxis = d3.axisLeft().scale(yScale)
         .ticks(decades.length)
         .tickValues(decades);
+      
+      var labelaxis = d3.axisTop().scale(labelScale)
+        .ticks(3)
+        .tickValues(['Romance', 'Move In', 'Marry']);
       
       var tooltip = d3.select('body').append('div')
         .attr('class', 'tooltip')
@@ -220,6 +228,8 @@
       d3.select('svg').append('g')
         .attr('transform', 'translate(' + margin.left + ',' + (svg_height + margin.top) + ')')
         .call(xaxis);
+      d3.select('svg').append('g')
+        .call(labelaxis);
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 )
         .attr('y', margin.top / 2)
