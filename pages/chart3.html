@@ -216,11 +216,7 @@
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
       
-      var romance_path = svg.append('g')
-        .attr('class', 'romance_path')
-        .append('path');
-      
-      romance_path.select('path')
+      svg.append('path')
         .attr('d', 'M' + xScale(romance_data[0]) + ' ' + (yScale(decades[0]) + yScale.bandwidth() / 2) + 
               ' L' + xScale(romance_data[1]) + ' ' + (yScale(decades[1]) + yScale.bandwidth() / 2) + 
               ' L' + xScale(romance_data[2]) + ' ' + (yScale(decades[2]) + yScale.bandwidth() / 2) + 
