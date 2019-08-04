@@ -65,8 +65,8 @@
 
 <body onload='main()'>
   
-  <h1 class='title' style='width:860;'>Slide 1: Interactive Drill-Down</h1>
-  <h2 class='subtitle' style='width:860;'>How Do Certain Types Of People Meet Their Partner?</h2>
+  <h1 class='title'>Slide 1: Interactive Drill-Down</h1>
+  <h2 class='subtitle'>How Do Certain Types Of People Meet Their Partner?</h2>
   
   <p class='body-text' style='margin-left: 50px; margin-right: 50px;'>
     In this slide, you can see how various groups of people met their partners in each decade from 1960 until the 2010s.
@@ -125,7 +125,7 @@
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
 
-      var svg = d3.select('#container').append('svg')
+      var svg = d3.select('#container').insert('svg', '#selector')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
