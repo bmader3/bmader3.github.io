@@ -43,10 +43,44 @@
   .slide-panel button:hover {
     background-color: SlateGray;
   }
+  .title {
+    font-family: "Lucida Console";
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    font-family: "Lucida Console";
+    font-size: 26px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .body-text {
+    font-family: "Lucida Console";
+    font-size: 16px;
+    font-weight: normal;
+  }
 </style>
 
 <body onload='main()'>
-  <div class='button-group' style='width:860' id='buttons'>
+  
+  <h1 class='title'>Slide 3: Couples' Contentment</h1>
+  <h2 class='subtitle'>How Satisfied Are People With Their Partners?</h2>
+  
+  <div class='body-text' style='margin-left: 50px; margin-right: 50px;'>
+    This slide shows you a dynamically changing bar graph that visualizes a histogram of how happy people are with
+    their partners and in their relationships over time. As before, click on the decade control buttons below the graph
+    to load that decade's data and update the plot. There are some annotations throughout the dataset that point out
+    some interesting trends, not least of which is a potentially chilling thought: are people becoming less happy in 
+    their relationships?
+  </div>
+  
+  <div class='container' id='container' style='text-align:center;'></div>
+  
+  <div style='width: 860px; margin: auto; text-align: center;'>
+  <div class='button-group' style='width:860px; text-align: center;' id='buttons'>
     <button onclick='update_data(1960)'>1960</button>
     <button onclick='update_data(1970)'>1970</button>
     <button onclick='update_data(1980)'>1980</button>
@@ -54,18 +88,21 @@
     <button onclick='update_data(2000)'>2000</button>
     <button onclick='update_data(2010)'>2010</button>
   </div>
+  </div>
   
+  <div style='width: 860px; margin: auto; text-align: center;'>
   <div> </div>
-  <div style='width: 860; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align:center;'>
+  <div style='width: 860px; font-family: "Lucida Console"; font-size: 14px; margin-top: 100px; margin-bottom: 10px; text-align: center;'>
     Use the panel below to navigate between pages in the slideshow.</div>
   <div> </div>
   
-  <div class='slide-panel' style='width:860; margin-bottom: 50px;' id='slidepanel'>
+  <div class='slide-panel' style='width:860px; margin-bottom: 50px; text-align: center;' id='slidepanel'>
     <button onclick="location.href = 'https://bmader3.github.io/index.html';">Start</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart1.html';">Overview</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart2.html';">Slide 1</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart3.html';">Slide 2</button>
     <button onclick="location.href = 'https://bmader3.github.io/pages/chart4.html';">Slide 3</button>
+  </div>
   </div>
   
   <p style='opacity: 0;'>spacing</p>
@@ -76,7 +113,7 @@
       svg_width = 800;
       svg_height = 600;
       margin = {top: 80, left: 40, right: 20, bottom: 20};
-      var svg = d3.select('body').insert('svg', '#buttons')
+      var svg = d3.select('#container').insert('svg', '#buttons')
         .attr('width', svg_width + margin.left + margin.right)
         .attr('height', svg_height + margin.top + margin.bottom)
         .append('g')
