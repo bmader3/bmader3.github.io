@@ -2,21 +2,33 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 
 <style>
-body {
-  font: 14px sans-serif;
-}
-.bar {
-  fill: silver;
-}
-.bar text {
-  fill: black;
-  font: 14px "Lucida Console";
-}
-.axis path, .axis line {
-  fill: none;
-  stroke: black;
-  shape-rendering: crispEdges;
-}
+  body {
+    font: 14px sans-serif;
+  }
+  .bar {
+    fill: silver;
+  }
+  .bar text {
+    fill: black;
+    font: 14px "Lucida Console";
+  }
+  .axis path, .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  .romance_circle circle {
+    fill: crimson;
+    radius: 8;
+  }
+  .movein_circle circle {
+    fill: FireBrick;
+    radius: 8;
+  }
+  .marriage_circle circle {
+    fill: Maroon;
+    radius: 8;
+  }
 /* .button-group button {
   background-color: DarkGray;
   border: 3px solid DimGray;
@@ -32,14 +44,6 @@ body {
 </style>
 
 <body onload='main()'>
-<!--   <div class='button-group' style='width:860' id='buttons'>
-    <button onclick='update_data(1960)'>1960</button>
-    <button onclick='update_data(1970)'>1970</button>
-    <button onclick='update_data(1980)'>1980</button>
-    <button onclick='update_data(1990)'>1990</button>
-    <button onclick='update_data(2000)'>2000</button>
-    <button onclick='update_data(2010)'>2010</button>
-  </div> -->
   
   <script>
     async function main() {
@@ -95,6 +99,14 @@ body {
       width_data.push(data2000[2]);
       width_data.push(data2010[2]);
       
+      romance_data = [];
+      romance_data.push(data1960[0]);
+      romance_data.push(data1970[0]);
+      romance_data.push(data1980[0]);
+      romance_data.push(data1990[0]);
+      romance_data.push(data2000[0]);
+      romance_data.push(data2010[0]);
+      
       xScale = d3.scaleLinear()
         .domain([0, 8])
         .range([0, svg_width]);
@@ -131,11 +143,12 @@ body {
 //         .text(function(d,i) { return ways[i]; });
       
       svg.append('g')
+        .attr('class', 'romance_circle')
+        .selectAll('circle').data(romance_data)
+        .enter()
         .append('circle')
-        .attr('cx', xScale(data1960[0]))
-        .attr('cy', yScale(decades[0]) + yScale.bandwidth() / 2)
-        .attr('r', 8)
-        .style('fill', 'lightsteelblue');
+        .attr('cx', function(d) { return xScale(d); })
+        .attr('cy', function(d,i) { return yScale(decades[i]) + yScale.bandwidth() / 2; });
       
       svg.append('g')
         .call(yaxis);
