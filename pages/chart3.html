@@ -30,7 +30,7 @@
     position: absolute;
     text-align: center;
     width: 100px;
-    height: 40px;
+    height: 60px;
     padding: 2px;
     font: 10px "Lucida Console";
     background-color: snow;
@@ -134,8 +134,8 @@
         .paddingInner(0.05);
       
       var labelScale = d3.scaleOrdinal()
-        .domain(['Romance', 'Move-In', 'Marry'])
-        .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(width_data[2])]);
+        .domain(['Romance', 'Move-In', 'Marry', 'End'])
+        .range([xScale(romance_data[0]), xScale(movein_data[0]), xScale(width_data[2]), xScale(8)]);
       
       var xaxis = d3.axisBottom().scale(xScale)
         .ticks(12)
@@ -177,7 +177,7 @@
             tooltip.style('opacity', 1);
             document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple entered a relationship " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
-              .style('top', (d3.event.pageY) - 40 + 'px');})
+              .style('top', (d3.event.pageY) - 60 + 'px');})
           .on('mouseout', function(d) {
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
@@ -194,7 +194,7 @@
             tooltip.style('opacity', 1);
             document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple moved in together " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
-              .style('top', (d3.event.pageY) - 40 + 'px');})
+              .style('top', (d3.event.pageY) - 60 + 'px');})
           .on('mouseout', function(d) {
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
@@ -211,7 +211,7 @@
             tooltip.style('opacity', 1);
             document.getElementById('tooltip').innerHTML = "In the " + decades[i] + ", the average couple got married " + d.toFixed(3) + " years after meeting.";
             tooltip.style('left', (d3.event.pageX) + 'px')
-              .style('top', (d3.event.pageY) - 40 + 'px');})
+              .style('top', (d3.event.pageY) - 60 + 'px');})
           .on('mouseout', function(d) {
             tooltip.style('opacity', 0);
             document.getElementById('tooltip').innerHTML="";});
@@ -222,6 +222,7 @@
         .attr('transform', 'translate(' + margin.left + ',' + (svg_height + margin.top) + ')')
         .call(xaxis);
       d3.select('svg').append('g')
+        .attr('transform', 'translate(0,' + margin.top + ')')
         .call(labelaxis);
       d3.select('svg').append('text')
         .attr('x', (svg_width + margin.left + margin.right) / 2 )
